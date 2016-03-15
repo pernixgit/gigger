@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  et 'pages/contact'
+
+  get 'pages/about'
+
+  resources :musicians
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
