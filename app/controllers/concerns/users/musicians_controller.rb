@@ -1,5 +1,6 @@
 class MusiciansController < ApplicationController
   before_action :set_musician, [:show, :edit, :update, :destroy]
+  before_action :find_musician, only: [:instrument]
   def index
     @musicians = Musician.all
   end
@@ -36,10 +37,22 @@ class MusiciansController < ApplicationController
     redirect_to_musicians_path
   end
 
+  def top
+    @musicians = Musician.where(stars:3)
+  end
+
+  def instrument
+    @musician
+  end
+
   private
 
   def musician_params
     params.require(:musician).permit(:name, :address)
+  end
+
+  def find_musician
+    @musician = Musician.find(params[:id])
   end
 
 
