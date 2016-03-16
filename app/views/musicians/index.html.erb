@@ -1,4 +1,8 @@
 <% @musicians.each do |musician| %>
-  <h2><%= musician.name %></h2>
-  <p><%= musician.address %></p>
+  <% @musicians.each do |musician| %>
+  <%= link_to musician.name, musician_path(musican) %>
 <% end %>
+
+<a href="/musicians/1">Paul</a>
+<a href="/musicians/2">Ringo</a>
+<a href="/musicians/3">Jimmy</a>

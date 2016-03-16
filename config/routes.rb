@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  et 'pages/contact'
+  get 'pages/contact'
 
   get 'pages/about'
 
-  resources :musicians
+  resources :musicians do
+    collection do
+      get 'top', to:"musicians#top"
+    end
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

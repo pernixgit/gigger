@@ -1,4 +1,5 @@
 class MusiciansController < ApplicationController
+  before_action :set_musician, [:show, :edit, :update, :destroy]
   def index
     @musicians = Musician.all
   end
@@ -15,6 +16,7 @@ class MusiciansController < ApplicationController
   def create
     @musician = Musician.new(musician_params)
     @musician.save
+    redirect_to_musician_path(@musician)
   end
 
   def edit
@@ -24,11 +26,14 @@ class MusiciansController < ApplicationController
   def update
     @musician = Musician.find(params[:id])
     @musician.update(musician_params)
+
+    redirect_to_musician_path(@restaurant)
   end
 
   def destroy
     @musician = Musician.find(params[:id])
     @musician.destroy
+    redirect_to_musicians_path
   end
 
   private
