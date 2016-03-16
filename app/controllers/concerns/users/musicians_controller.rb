@@ -16,9 +16,13 @@ class MusiciansController < ApplicationController
 
   def create
     @musician = Musician.new(musician_params)
-    @musician.save
+    if @musician.save
     redirect_to_musician_path(@musician)
+    else
+      render :new
+    end
   end
+
 
   def edit
     @musician = Musician.find(params[:id])
@@ -26,10 +30,14 @@ class MusiciansController < ApplicationController
 
   def update
     @musician = Musician.find(params[:id])
-    @musician.update(musician_params)
+    if @musician.update(musician_params)
 
     redirect_to_musician_path(@restaurant)
+    else
+      render :edit
+    end
   end
+
 
   def destroy
     @musician = Musician.find(params[:id])
@@ -44,6 +52,8 @@ class MusiciansController < ApplicationController
   def instrument
     @musician
   end
+
+
 
   private
 

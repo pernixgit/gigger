@@ -4,4 +4,14 @@
   <%= f.label :address %>
   <%= f.text_field :address %>
   <%= f.submit %>
+    <%if @musician.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% @musician.errors.full_messages.each do|message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <% end %>
