@@ -1,0 +1,7 @@
+<% content_for(:js) do %>
+  <%= javascript_tag do %>
+    $(function()){
+      $(".target").text("<%= some_ruby %>");
+  });
+  <% end %>
+<% end %>

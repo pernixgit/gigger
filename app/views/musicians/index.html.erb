@@ -6,3 +6,8 @@
 <a href="/musicians/1">Paul</a>
 <a href="/musicians/2">Ringo</a>
 <a href="/musicians/3">Jimmy</a>
+
+<% @musicians.each do |r| %>
+  <%= render "musician", musician: r %>
+<% end %>
+

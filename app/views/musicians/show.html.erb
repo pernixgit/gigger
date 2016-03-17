@@ -1,2 +1,16 @@
 <h2><%= @musician.name %></h2>
 <p><%= @musician.address %></p>
+
+<% content_for(:title) do %>
+  <%= @musician.name %> SAN JOSE
+<% end  %>
+
+<h1><%= @musician.name %></h1>
+
+
+<% content_for(:description) do %>
+  <%= @musician.description %>
+<% end %>
+
+<h1><%= @musician.name %></h1>
+
