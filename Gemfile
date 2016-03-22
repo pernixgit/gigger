@@ -8,6 +8,7 @@ gem 'pg', '~> 0.17.0'
 gem 'devise', '~> 3.5'
 gem 'activeadmin', '~> 1.0.0.pre2'
 gem 'dotenv-rails', '~> 0.9.0'
+gem 'cancancan', '~> 1.13'
 
 # assets
 gem 'sass-rails', '~> 5.0'
