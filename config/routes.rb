@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'pages/contact'
 
   get 'pages/about'
@@ -25,6 +26,15 @@ end
   end
 
 
+=======
+  devise_for :users
+  devise_for :admin_users
+
+  resources :clients
+  resources :bands
+  resources :musicians
+  resources :events
+>>>>>>> develop
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
