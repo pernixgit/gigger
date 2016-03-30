@@ -13,6 +13,8 @@
 
 /config/database.yml
 
+/spec/examples.txt
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
