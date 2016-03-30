@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :bands
   resources :musicians
   resources :events
+
+  root 'musicians#index'
 end
