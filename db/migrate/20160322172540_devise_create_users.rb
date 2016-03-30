@@ -38,6 +38,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
 
       t.timestamps null: false
+
+      # relations
+
+      t.references :band, index: true
     end
 
     add_index :users, :email,                unique: true

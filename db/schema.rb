@@ -35,9 +35,15 @@ ActiveRecord::Schema.define(version: 20160328191545) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.datetime "date"
+    t.text     "description"
+    t.integer  "client_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "events", ["client_id"], name: "index_events_on_client_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -56,8 +62,10 @@ ActiveRecord::Schema.define(version: 20160328191545) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "band_id"
   end
 
+  add_index "users", ["band_id"], name: "index_users_on_band_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
