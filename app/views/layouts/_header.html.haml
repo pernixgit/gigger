@@ -1,0 +1,16 @@
+%header
+  .menu-wrapper
+    %a.logo{:href => root_path}
+      %span.logo-icon
+        Insert logo here
+
+    = link_to "Postear nuevo evento", new_event_path
+
+  #header-search-bar.search-wrapper
+    %i.icon-search
+    %input#search-text{:placeholder => "Buscar oportunidades", :type => "text", :value => ""}
+
+  .user-wrapper
+    .user-picture
+      Insert circular user picture around here
+
