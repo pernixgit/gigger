@@ -5,6 +5,7 @@ namespace :sample_data do
     Rake::Task["sample_data:clients"].invoke
     Rake::Task["sample_data:musicians"].invoke
     Rake::Task["sample_data:bands"].invoke
+    Rake::Task["sample_data:events"].invoke
   end
 
   desc "Creates admin user"
@@ -71,6 +72,17 @@ namespace :sample_data do
     end
   end
 
+  desc "Createss events"
+  task events: :environment do
+    10.times do |n|
+      update_or_create_event(
+        name: "Event #{n}",
+        date: Date.tomorrow,
+        description: "description #{n}"
+      )
+    end
+  end
+
   def update_or_create_client(attributes)
     client = Client.find_or_initialize_by(email: attributes.delete(:email))
     client.update_attributes(attributes)
@@ -87,7 +99,7 @@ namespace :sample_data do
   end
 
   def update_or_create_event(attributes)
-    event = Event.find_or_initialize_by(email: attributes.delete(:email))
+    event = Event.find_or_initialize_by(name: attributes.delete(:name))
     event.update_attributes(attributes)
   end
 end
