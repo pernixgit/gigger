@@ -1,5 +1,10 @@
-class Band < User
-  has_many :musicians, class_name: 'User'
+class Band < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  
+  has_many :musicians
 
   validates :name, :phone, :email, presence: true
 end

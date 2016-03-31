@@ -1,11 +1,9 @@
-class CreateEvents < ActiveRecord::Migration
+class CreateEvent < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :name
       t.datetime :date
       t.text :description
-
-      t.references :client, index: true
 
       t.timestamps null: false
     end

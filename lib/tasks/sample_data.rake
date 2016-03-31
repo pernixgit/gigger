@@ -23,24 +23,7 @@ namespace :sample_data do
         name: "client #{n}",
         last_name: "McClient",
         phone: "9999-9999",
-        identification: "0-0000-0000",
-        type: "Client"
-      )
-    end
-  end
-
-  desc "Creates musicians"
-  task musicians: :environment do
-    15.times do |n|
-      update_or_create_musician(
-        email: "musician#{n}@email.com",
-        password: "password",
-        password_confirmation: "password",
-        name: "Musician #{n}",
-        last_name: "McMusic",
-        phone: "9999-9999",
-        identification: "0-0000-0000",
-        type: "Musician"
+        identification: "0-0000-0000"
       )
     end
   end
@@ -53,22 +36,37 @@ namespace :sample_data do
         password: "password",
         password_confirmation: "password",
         name: "Band #{n}",
-        last_name: "McAlbum",
-        phone: "9999-9999",
-        identification: "0-0000-0000",
-        type: "Band"
+        phone: "9999-9999"
       )
     end
+  end
 
-    band_1 = Band.first
-    band_2 = Band.last
-
-    Musician.first(5) do |member|
-      band_1.musicians.add(member)
+  desc "Creates musicians"
+  task musicians: :environment do
+    Band.all.each do |band|
+      3.times do
+        band.musicians.create(
+          email: "musician#{band.id}@email.com",
+          password: "password",
+          password_confirmation: "password",
+          name: "Musician #{band.id}",
+          last_name: "McMusic",
+          phone: "9999-9999",
+          identification: "0-0000-0000"
+        )
+      end
     end
 
-    Musician.last(5) do |member|
-      band_2.musicians.add(member)
+    5.times do |n|
+      update_or_create_musician(
+        email: "musician#{n + Band.all.count}@email.com",
+        password: "password",
+        password_confirmation: "password",
+        name: "Musician #{n + Band.all.count}",
+        last_name: "McMusic",
+        phone: "9999-9999",
+        identification: "0-0000-0000"
+      )
     end
   end
 
