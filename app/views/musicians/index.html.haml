@@ -1,0 +1,14 @@
+%p#notice= notice
+
+= render partial: 'partials/search_bar'
+
+%h1 Listing Musicians
+%table
+  %thead
+    %tr
+      %th{colspan: '3'}
+  %tbody
+    - @musicians.each do |musician|
+      %tr
+        %td= musician.name
+        %td= link_to 'Show', musician

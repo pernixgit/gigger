@@ -1,0 +1,5 @@
+= form_for(@client) do |f|
+  - if @client.errors.any?
+    = render partial: 'partials/error_wrapper', locals: { resource: @client }
+  .actions
+    = f.submit
