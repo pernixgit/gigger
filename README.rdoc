@@ -10,7 +10,7 @@ Installation setup:
 
 5. Install the other gems -> `bundle` | `bundle install`
 
-6. Setup the database.yml file (There's a guide -> `databse.yml.example).
+6. Setup the database.yml file (There's a guide -> `databse.yml.example`).
 
 7. Setup the database -> `rake db:setup`
 
