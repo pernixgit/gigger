@@ -4,7 +4,7 @@ Installation setup:
 
 2. Get RVM (unless you already got it), info in here -> https://rvm.io/rvm/install
 
-3. Install the correct Ruby version (currently 2.2.1) -> `rvm install ruby-2.2.4`
+3. Install the correct Ruby version (currently 2.2.4) -> `rvm install ruby-2.2.4`
 
 4. Install the Bundler gem -> `gem install bundler`
 
