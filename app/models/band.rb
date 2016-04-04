@@ -5,6 +5,8 @@ class Band < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :musicians
+  has_and_belongs_to_many :event_types
+  has_and_belongs_to_many :genres
 
   validates :name, :phone, :email, presence: true
 end
