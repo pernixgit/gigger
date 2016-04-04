@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bands", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.string   "phone"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "bands_genres", ["genre_id"], name: "index_bands_genres_on_genre_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "event_types_musicians", ["musician_id"], name: "index_event_types_musicians_on_musician_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",          null: false
     t.date     "date"
     t.time     "time"
     t.text     "description"
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "instruments_musicians", ["musician_id"], name: "index_instruments_musicians_on_musician_id", using: :btree
 
   create_table "musicians", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
