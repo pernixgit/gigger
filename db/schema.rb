@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
 
   create_table "event_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -140,13 +140,13 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "genres_musicians", ["musician_id"], name: "index_genres_musicians_on_musician_id", using: :btree
 
   create_table "instrument_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "instruments", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",               null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "instrument_type_id"
