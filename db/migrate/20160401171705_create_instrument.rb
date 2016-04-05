@@ -1,8 +1,7 @@
-class CreateBand < ActiveRecord::Migration
+class CreateInstrument < ActiveRecord::Migration
   def change
-    create_table :bands do |t|
+    create_table :instruments do |t|
       t.string :name, null: false
-      t.string :phone
 
       t.timestamps null: false
     end

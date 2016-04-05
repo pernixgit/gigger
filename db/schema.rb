@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331233113) do
+ActiveRecord::Schema.define(version: 20160404171511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160331233113) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bands", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.string   "phone"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -54,8 +54,24 @@ ActiveRecord::Schema.define(version: 20160331233113) do
   add_index "bands", ["email"], name: "index_bands_on_email", unique: true, using: :btree
   add_index "bands", ["reset_password_token"], name: "index_bands_on_reset_password_token", unique: true, using: :btree
 
+  create_table "bands_event_types", id: false, force: :cascade do |t|
+    t.integer "band_id"
+    t.integer "event_type_id"
+  end
+
+  add_index "bands_event_types", ["band_id"], name: "index_bands_event_types_on_band_id", using: :btree
+  add_index "bands_event_types", ["event_type_id"], name: "index_bands_event_types_on_event_type_id", using: :btree
+
+  create_table "bands_genres", id: false, force: :cascade do |t|
+    t.integer "band_id"
+    t.integer "genre_id"
+  end
+
+  add_index "bands_genres", ["band_id"], name: "index_bands_genres_on_band_id", using: :btree
+  add_index "bands_genres", ["genre_id"], name: "index_bands_genres_on_genre_id", using: :btree
+
   create_table "clients", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
@@ -76,19 +92,78 @@ ActiveRecord::Schema.define(version: 20160331233113) do
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
 
+  create_table "event_types", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_types_musicians", id: false, force: :cascade do |t|
+    t.integer "event_type_id"
+    t.integer "musician_id"
+  end
+
+  add_index "event_types_musicians", ["event_type_id"], name: "index_event_types_musicians_on_event_type_id", using: :btree
+  add_index "event_types_musicians", ["musician_id"], name: "index_event_types_musicians_on_musician_id", using: :btree
+
   create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "date"
+    t.string   "name",          null: false
+    t.date     "date"
+    t.time     "time"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "client_id"
+    t.integer  "event_type_id"
   end
 
   add_index "events", ["client_id"], name: "index_events_on_client_id", using: :btree
+  add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
+
+  create_table "events_event_types", id: false, force: :cascade do |t|
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres_musicians", id: false, force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "musician_id"
+  end
+
+  add_index "genres_musicians", ["genre_id"], name: "index_genres_musicians_on_genre_id", using: :btree
+  add_index "genres_musicians", ["musician_id"], name: "index_genres_musicians_on_musician_id", using: :btree
+
+  create_table "instrument_types", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string   "name",               null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "instrument_type_id"
+  end
+
+  add_index "instruments", ["instrument_type_id"], name: "index_instruments_on_instrument_type_id", using: :btree
+
+  create_table "instruments_musicians", id: false, force: :cascade do |t|
+    t.integer "instrument_id"
+    t.integer "musician_id"
+  end
+
+  add_index "instruments_musicians", ["instrument_id"], name: "index_instruments_musicians_on_instrument_id", using: :btree
+  add_index "instruments_musicians", ["musician_id"], name: "index_instruments_musicians_on_musician_id", using: :btree
 
   create_table "musicians", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
@@ -111,6 +186,16 @@ ActiveRecord::Schema.define(version: 20160331233113) do
   add_index "musicians", ["email"], name: "index_musicians_on_email", unique: true, using: :btree
   add_index "musicians", ["reset_password_token"], name: "index_musicians_on_reset_password_token", unique: true, using: :btree
 
+  create_table "musicians_event_types", id: false, force: :cascade do |t|
+    t.integer "musician_id"
+    t.integer "event_type_id"
+  end
+
+  add_index "musicians_event_types", ["event_type_id"], name: "index_musicians_event_types_on_event_type_id", using: :btree
+  add_index "musicians_event_types", ["musician_id"], name: "index_musicians_event_types_on_musician_id", using: :btree
+
   add_foreign_key "events", "clients"
+  add_foreign_key "events", "event_types"
+  add_foreign_key "instruments", "instrument_types"
   add_foreign_key "musicians", "bands"
 end

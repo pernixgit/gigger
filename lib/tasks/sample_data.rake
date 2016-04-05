@@ -10,7 +10,7 @@ namespace :sample_data do
 
   desc "Creates admin user"
   task admin_user: :environment do
-    AdminUser.create email: "admin@livewatch.com", password: "password", password_confirmation: "password"
+    AdminUser.create email: "admin@gigger.com", password: "password", password_confirmation: "password"
   end
 
   desc "Creates clients"
@@ -83,7 +83,7 @@ namespace :sample_data do
     end
   end
 
-  desc "Createss events"
+  desc "Creates events"
   task events: :environment do
     10.times do |n|
       update_or_create_event(

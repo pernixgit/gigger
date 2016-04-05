@@ -1,28 +1,23 @@
-== README
+Installation setup:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Get PostgresSQL, info can be found on the following link -> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
 
-Things you may want to cover:
+2. Get RVM (unless you already got it), info in here -> https://rvm.io/rvm/install
 
-* Ruby version
+3. Install the correct Ruby version (currently 2.2.4) -> `rvm install ruby-2.2.4`
 
-* System dependencies
+4. Install the Bundler gem -> `gem install bundler`
 
-* Configuration
+5. Install the other gems -> `bundle` | `bundle install`
 
-* Database creation
+6. Setup the database.yml file (There's a guide -> `databse.yml.example`).
 
-* Database initialization
+7. Setup the database -> `rake db:setup`
 
-* How to run the test suite
+8. Run the server -> `rails s`
 
-* Services (job queues, cache servers, search engines, etc.)
+Run tests:
 
-* Deployment instructions
+1. `rake db:test:prepare`
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+2. `rspec`
