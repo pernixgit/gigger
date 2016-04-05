@@ -23,17 +23,10 @@ namespace :production_data do
   desc "Loads event type data"
   task event_types: :environment do
     event_types = [
-      "Cumpleaños para niños",
-      "15 años",
-      "50 años",
-      "Bautizos",
-      "Primera Comunion",
-      "Boda",
-      "Fiesta familiar",
-      "Concierto",
-      "Festival",
-      "Graduacion",
-      "Serenata",
+      "Cumpleaños para niños", "15 años", "50 años",
+      "Bautizos", "Primera Comunion", "Boda",
+      "Fiesta familiar", "Concierto", "Festival",
+      "Graduacion", "Serenata",
     ]
 
     event_types.each do |e|
