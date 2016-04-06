@@ -1,6 +1,6 @@
 class BandsController < InheritedResources::Base
 
-  before_action :find_band, only: [:show, :edit, :update, :destroy]
+  before_action :find_band, except: [:index, :new, :create]
 
   def index
     @bands = Band.all
