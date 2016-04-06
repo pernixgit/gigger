@@ -1,31 +1,40 @@
-<% nameScope = @config['name_scope'] %>
-<% sgPath = @config['styleguide_path'] %>
-<% client = @config['client_name'] %>
 <!doctype html>
 <html>
-  <head>
-    <title><%= client %> Living Styleguide: <%= title %></title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-    <meta content="on" http-equiv="cleartype"/>
-    <meta content="True" name="HandheldFriendly"/>
-    <meta content="320" name="MobileOptimized"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <%= RailsRenderingContext.instance.stylesheet_link_tag "application-styleguide" %>
-    <%= RailsRenderingContext.instance.stylesheet_link_tag "application" %>
-  </head>
-  <body class="sg--body">
-    <div class="sg--wrapper">
-      <div class="sg--wrapper__content">
-        <header class="sg--siteHeader">
-          <button class="sg--menu"></button>
-          <button class="sg--margins">Full Width</button>
-          <h1 class="sg--siteHeader__title"><%= client %> Living Styleguide: <%= title %></h1>
-          <ul class="sg--navTarget">
-          <% @blocks.each do |b| %>
-            <li class="sg--navTarget__item"><a class="sg--navTarget__link" href="#<%= b[:name] %>"><%= b[:title] %></a></li>
-          <% end %>
-          </ul>
-        </header>
-        <div class="sg--content">
-
+    <head>
+        <title>HologramExample</title>
+          <%= RailsRenderingContext.instance.stylesheet_link_tag "application-styleguide" %>
+          <%= RailsRenderingContext.instance.stylesheet_link_tag "application" %>
+    </head>
+    <header class="header pbn" role="banner">
+        <div class="backgroundHighlight typeReversed1">
+            <div class="container">
+                <h1 class="h2 mvs">My Styleguide</h1>
+            </div>
+        </div>
+        <div class="backgroundLowlight typeReversed1">
+            <div class="container">
+              <span>
+                <ul class="docNav listInline">
+                    <%# for c in categories %>
+                        <li><a href="/styleguide/<%#= c[0] %>.html"><%#= c[0] %></a></li>
+                    <%# end %>
+                </ul>
+              </span>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <section>
+            <div class="line">
+                <div class="col cols4">
+                    <div class="componentMenu box boxBasic backgroundBasic">
+                        <div class="boxBody pan">
+                            <ul class="componentList listBorderedHover">
+                                <% blocks.each do |block| %>
+                                <li><a href="#<%= block[:name] %>"><%= block[:title] %></a></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="main col cols20 lastCol">
