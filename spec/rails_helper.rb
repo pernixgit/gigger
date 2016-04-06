@@ -6,6 +6,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'rspec/its'
 require 'shoulda/matchers'
+require 'faker'
 
 ActiveRecord::Migration.maintain_test_schema!
 
