@@ -1,14 +1,15 @@
+<% client = @config['client_name'] %>
 <!doctype html>
 <html>
     <head>
-        <title>HologramExample</title>
+        <title><%= client %> Living Styleguide: <%= title %></title>
           <%= RailsRenderingContext.instance.stylesheet_link_tag "application-styleguide" %>
           <%= RailsRenderingContext.instance.stylesheet_link_tag "application" %>
     </head>
     <header class="header pbn" role="banner">
         <div class="backgroundHighlight typeReversed1">
             <div class="container">
-                <h1 class="h2 mvs">My Styleguide</h1>
+                <h1 class="h2 mvs"><%= client %> Living Styleguide: <%= title %></h1>
             </div>
         </div>
         <div class="backgroundLowlight typeReversed1">
