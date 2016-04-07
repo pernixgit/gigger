@@ -21,3 +21,13 @@ Run tests:
 1. `rake db:test:prepare`
 
 2. `rspec`
+
+Front End:
+
+Hologram
+
+Hologram is a static generator for style guides. To generate the style guide run `hologram` from the command line.
+
+Optionally, you can watch for changes using `bundle exec guard`.
+
+Visit the style guide by navigating to `localhost:3000/styleguide`.

@@ -1,0 +1,41 @@
+<% client = @config['client_name'] %>
+<!doctype html>
+<html>
+    <head>
+        <title><%= client %> Living Styleguide: <%= title %></title>
+          <%= RailsRenderingContext.instance.stylesheet_link_tag "application-styleguide" %>
+          <%= RailsRenderingContext.instance.stylesheet_link_tag "application" %>
+    </head>
+    <header class="header pbn" role="banner">
+        <div class="backgroundHighlight typeReversed1">
+            <div class="container">
+                <h1 class="h2 mvs"><%= client %> Living Styleguide: <%= title %></h1>
+            </div>
+        </div>
+        <div class="backgroundLowlight typeReversed1">
+            <div class="container">
+              <span>
+                <ul class="docNav listInline">
+                    <%# for c in categories %>
+                        <li><a href="/styleguide/<%#= c[0] %>.html"><%#= c[0] %></a></li>
+                    <%# end %>
+                </ul>
+              </span>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <section>
+            <div class="line">
+                <div class="col cols4">
+                    <div class="componentMenu box boxBasic backgroundBasic">
+                        <div class="boxBody pan">
+                            <ul class="componentList listBorderedHover">
+                                <% blocks.each do |block| %>
+                                <li><a href="#<%= block[:name] %>"><%= block[:title] %></a></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="main col cols20 lastCol">
