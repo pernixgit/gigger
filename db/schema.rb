@@ -39,10 +39,7 @@ ActiveRecord::Schema.define(version: 20160407223623) do
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
-
-  add_index "bands", ["user_id"], name: "index_bands_on_user_id", using: :btree
 
   create_table "bands_event_types", id: false, force: :cascade do |t|
     t.integer "band_id"
@@ -67,10 +64,7 @@ ActiveRecord::Schema.define(version: 20160407223623) do
     t.string   "phone"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "user_id"
   end
-
-  add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
 
   create_table "event_types", force: :cascade do |t|
     t.string   "name",       null: false
@@ -150,11 +144,9 @@ ActiveRecord::Schema.define(version: 20160407223623) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "band_id"
-    t.integer  "user_id"
   end
 
   add_index "musicians", ["band_id"], name: "index_musicians_on_band_id", using: :btree
-  add_index "musicians", ["user_id"], name: "index_musicians_on_user_id", using: :btree
 
   create_table "musicians_event_types", id: false, force: :cascade do |t|
     t.integer "musician_id"
@@ -177,16 +169,22 @@ ActiveRecord::Schema.define(version: 20160407223623) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "band_id"
+    t.integer  "client_id"
+    t.integer  "musician_id"
   end
 
+  add_index "users", ["band_id"], name: "index_users_on_band_id", using: :btree
+  add_index "users", ["client_id"], name: "index_users_on_client_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["musician_id"], name: "index_users_on_musician_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "bands", "users"
-  add_foreign_key "clients", "users"
   add_foreign_key "events", "clients"
   add_foreign_key "events", "event_types"
   add_foreign_key "instruments", "instrument_types"
   add_foreign_key "musicians", "bands"
-  add_foreign_key "musicians", "users"
+  add_foreign_key "users", "bands"
+  add_foreign_key "users", "clients"
+  add_foreign_key "users", "musicians"
 end

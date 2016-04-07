@@ -6,6 +6,7 @@ describe Musician do
     it { should have_and_belong_to_many(:instruments) }
     it { should have_and_belong_to_many(:event_types) }
     it { should have_and_belong_to_many(:genres) }
+    it { should have_one(:user) }
   end
 
   describe 'validations' do

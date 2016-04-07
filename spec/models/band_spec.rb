@@ -5,6 +5,7 @@ describe Band do
     it { should have_many(:musicians) }
     it { should have_and_belong_to_many(:event_types) }
     it { should have_and_belong_to_many(:genres) }
+    it { should have_one(:user) }
   end
 
   describe 'validations' do
