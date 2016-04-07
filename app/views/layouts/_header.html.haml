@@ -11,6 +11,14 @@
     %input#search-text{placeholder: "Buscar oportunidades", type: "text", value: ""}
 
   .user-wrapper
+  - if user_signed_in?
     .user-picture
       Insert circular user picture around here
+  - else
+    .login
+      %ul.links
+        %li.link 
+          = link_to "Sign up", new_musician_registration_path
+        %li.link
+          = link_to "Login", new_musician_session_path
 
