@@ -36,7 +36,7 @@ class BandsController < InheritedResources::Base
   private
 
   def band_params
-    params.require(:band).permit(:name, :email, :phone, :password)
+    params.require(:band).permit(:name, :phone)
   end
 
   def find_band

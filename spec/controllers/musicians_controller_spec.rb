@@ -83,7 +83,7 @@ describe MusiciansController do
   end
 
   describe 'PUT #update' do
-    let(:update_params) { { name: Faker::Lorem.name, email: Faker::Internet.email } }
+    let(:update_params) { { name: Faker::Lorem.name } }
 
     context 'when update is valid' do
       it 'updates' do

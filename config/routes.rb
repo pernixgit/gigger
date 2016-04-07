@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :musicians
   devise_for :bands
   devise_for :clients

@@ -40,9 +40,7 @@ class ClientsController < InheritedResources::Base
       :name,
       :last_name,
       :identification,
-      :phone,
-      :email,
-      :password
+      :phone
     )
   end
 
