@@ -2,6 +2,8 @@ namespace :sample_data do
   desc "Creates sample data"
   task all: :environment do
     Rake::Task["sample_data:admin_user"].invoke unless Rails.env.production?
+
+    Rake::Task["production_data:all"].invoke
     Rake::Task["sample_data:clients"].invoke
     Rake::Task["sample_data:bands"].invoke
     Rake::Task["sample_data:musicians"].invoke
@@ -85,21 +87,16 @@ namespace :sample_data do
 
   desc "Creates events"
   task events: :environment do
-    10.times do |n|
+    20.times do |n|
       update_or_create_event(
-        name: "Event 1#{n}",
+        name: "Event #{n}",
         date: Date.tomorrow,
-        description: "description 1#{n}",
-        client_id: Client.first.id
-      )
-    end
-
-    10.times do |n|
-      update_or_create_event(
-        name: "Event 2#{n}",
-        date: Date.tomorrow,
-        description: "description 2#{n}",
-        client_id: Client.second.id
+        time: Time.now,
+        email: "event#{n}@email.com",
+        phone: "9999-9999",
+        description: "description #{n}",
+        client_id: 1 + rand(Client.all.count),
+        event_type_id: 1 + rand(EventType.all.count)
       )
     end
   end
