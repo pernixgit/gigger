@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :musicians
   resources :events
 
-  root 'musicians#index'
+  root 'events#index'
 end
