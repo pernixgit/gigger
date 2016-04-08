@@ -3,6 +3,11 @@ require 'rails_helper'
 describe MusiciansController do
   
   let(:musician) { create(:musician) }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #new' do
     it 'assigns new musician' do

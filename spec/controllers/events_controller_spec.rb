@@ -3,6 +3,11 @@ require 'rails_helper'
 describe EventsController do
   
   let(:event) { create(:event) }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #new' do
     it 'assigns new event' do

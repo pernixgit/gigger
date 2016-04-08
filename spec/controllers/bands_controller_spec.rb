@@ -3,6 +3,11 @@ require 'rails_helper'
 describe BandsController do
   
   let(:band) { create(:band) }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #new' do
     it 'assigns new band' do

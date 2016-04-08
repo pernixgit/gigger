@@ -3,6 +3,11 @@ require 'rails_helper'
 describe ClientsController do
   
   let(:client) { create(:client) }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #new' do
     it 'assigns new client' do
