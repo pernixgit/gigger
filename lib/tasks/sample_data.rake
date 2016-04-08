@@ -18,14 +18,17 @@ namespace :sample_data do
   desc "Creates clients"
   task clients: :environment do
     5.times do |n|
-      update_or_create_client(
-        email: "client#{n}@email.com",
-        password: "password",
-        password_confirmation: "password",
+      client = update_or_create_client(
         name: "client #{n}",
         last_name: "McClient",
         phone: "9999-9999",
         identification: "0-0000-0000"
+      )
+
+      update_or_create_user(
+        email: "user-client-#{n}@email.com",
+        password: "password",
+        client_id: client.id
       )
     end
   end
@@ -33,12 +36,15 @@ namespace :sample_data do
   desc "Creates bands"
   task bands: :environment do
     2.times do |n|
-      update_or_create_band(
-        email: "band#{n}@email.com",
-        password: "password",
-        password_confirmation: "password",
+      band = update_or_create_band(
         name: "Band #{n}",
         phone: "9999-9999"
+      )
+
+      update_or_create_user(
+        email: "user-band-#{n}@email.com",
+        password: "password",
+        band_id: band.id
       )
     end
   end
@@ -47,40 +53,49 @@ namespace :sample_data do
   task musicians: :environment do
 
     5.times do |n|
-      update_or_create_musician(
-        email: "musician0#{n}@email.com",
-        password: "password",
-        password_confirmation: "password",
+      musician = update_or_create_musician(
         name: "Musician 0#{n}",
         last_name: "McMusic",
         phone: "9999-9999",
         identification: "0-0000-0000",
         band_id: Band.first.id
       )
+
+      user = update_or_create_user(
+        email: "user-musician-b1-#{n}@email.com",
+        password: "password",
+        musician_id: musician.id
+      )
     end
 
     5.times do |n|
-      update_or_create_musician(
-        email: "musician1#{n}@email.com",
-        password: "password",
-        password_confirmation: "password",
+      musician = update_or_create_musician(
         name: "Musician 1#{n}",
         last_name: "McMusic",
         phone: "9999-9999",
         identification: "0-0000-0000",
         band_id: Band.second.id
       )
+
+      user = update_or_create_user(
+        email: "user-musician-b2-#{n}@email.com",
+        password: "password",
+        musician_id: musician.id
+      )
     end
 
     5.times do |n|
-      update_or_create_musician(
-        email: "musician2#{n}@email.com",
-        password: "password",
-        password_confirmation: "password",
+      musician = update_or_create_musician(
         name: "Musician 2#{n}",
         last_name: "McMusic",
         phone: "9999-9999",
         identification: "0-0000-0000"
+      )
+
+      user = update_or_create_user(
+        email: "user-musician-#{n}@email.com",
+        password: "password",
+        musician_id: musician.id
       )
     end
   end
@@ -102,22 +117,30 @@ namespace :sample_data do
   end
 
   def update_or_create_client(attributes)
-    client = Client.find_or_initialize_by(email: attributes.delete(:email))
+    client = Client.find_or_initialize_by(name: attributes.delete(:name))
     client.update_attributes(attributes)
+    return client
   end
 
   def update_or_create_band(attributes)
-    band = Band.find_or_initialize_by(email: attributes.delete(:email))
+    band = Band.find_or_initialize_by(name: attributes.delete(:name))
     band.update_attributes(attributes)
+    return band
   end
 
   def update_or_create_musician(attributes)
-    musician = Musician.find_or_initialize_by(email: attributes.delete(:email))
+    musician = Musician.find_or_initialize_by(name: attributes.delete(:name))
     musician.update_attributes(attributes)
+    return musician
   end
 
   def update_or_create_event(attributes)
     event = Event.find_or_initialize_by(name: attributes.delete(:name))
     event.update_attributes(attributes)
+  end
+
+  def update_or_create_user(attributes)
+    user = User.find_or_initialize_by(email: attributes.delete(:email))
+    user.update_attributes(attributes)
   end
 end
