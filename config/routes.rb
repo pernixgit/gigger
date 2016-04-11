@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :musicians
   resources :events
 
-  get 'user_root' => 'pages#define_user_type'
+  get 'define-user-type' => 'pages#define_user_type'
 
   root 'events#index'
 end
