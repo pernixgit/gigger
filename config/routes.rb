@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
-  devise_for :musicians
-  devise_for :bands
-  devise_for :clients
+  devise_for :users, controller: { registrations: "users/registrations" }
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -11,6 +8,8 @@ Rails.application.routes.draw do
   resources :bands
   resources :musicians
   resources :events
+
+  get 'user_root' => 'pages#define_user_type'
 
   root 'events#index'
 end

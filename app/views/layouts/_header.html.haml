@@ -14,8 +14,9 @@
   - if user_signed_in?
     .user-picture
       Insert circular user picture around here
+      #{new_user?}
     .user-info
-      %p #{ current_user_type.name + " " + current_user_type.last_name }
+      %p #{ current_user_type.try(:name) } #{ current_user_type.try(:last_name) }
       %p #{ current_user.email }
       = link_to "Cerrar sesion", destroy_user_session_path, method: :delete
   - else
