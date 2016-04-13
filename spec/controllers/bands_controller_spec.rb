@@ -3,6 +3,11 @@ require 'rails_helper'
 describe BandsController do
   
   let(:band) { create(:band) }
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe 'GET #new' do
     it 'assigns new band' do
@@ -83,7 +88,7 @@ describe BandsController do
   end
 
   describe 'PUT #update' do
-    let(:update_params) { { name: Faker::Lorem.name, email: Faker::Internet.email } }
+    let(:update_params) { { name: Faker::Lorem.name } }
 
     context 'when update is valid' do
       it 'updates' do

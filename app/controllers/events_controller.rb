@@ -1,5 +1,7 @@
 class EventsController < InheritedResources::Base
 
+  before_action :authenticate_user!, except: [:index, :show]
+
   before_action :find_event, except: [:index, :new, :create]
 
   def index

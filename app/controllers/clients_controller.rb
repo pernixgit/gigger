@@ -1,5 +1,7 @@
 class ClientsController < InheritedResources::Base
 
+  before_action :authenticate_user!
+
   before_action :find_client, except: [:index, :new, :create]
 
   def index
@@ -40,9 +42,7 @@ class ClientsController < InheritedResources::Base
       :name,
       :last_name,
       :identification,
-      :phone,
-      :email,
-      :password
+      :phone
     )
   end
 

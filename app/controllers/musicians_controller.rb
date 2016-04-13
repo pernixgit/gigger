@@ -1,5 +1,7 @@
 class MusiciansController < InheritedResources::Base
 
+  before_action :authenticate_user!, except: [:index, :show]
+
   before_action :find_musician, except: [:index, :new, :create]
 
   def index
@@ -40,9 +42,7 @@ class MusiciansController < InheritedResources::Base
       :name,
       :last_name,
       :identification,
-      :phone,
-      :email,
-      :password
+      :phone
     )
   end
 

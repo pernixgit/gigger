@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404171511) do
+ActiveRecord::Schema.define(version: 20160407223623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,24 +35,11 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bands", force: :cascade do |t|
-    t.string   "name",                                null: false
+    t.string   "name",       null: false
     t.string   "phone"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "bands", ["email"], name: "index_bands_on_email", unique: true, using: :btree
-  add_index "bands", ["reset_password_token"], name: "index_bands_on_reset_password_token", unique: true, using: :btree
 
   create_table "bands_event_types", id: false, force: :cascade do |t|
     t.integer "band_id"
@@ -71,26 +58,13 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "bands_genres", ["genre_id"], name: "index_bands_genres_on_genre_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
-    t.string   "name",                                null: false
+    t.string   "name",           null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
-
-  add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
-  add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
 
   create_table "event_types", force: :cascade do |t|
     t.string   "name",       null: false
@@ -163,12 +137,26 @@ ActiveRecord::Schema.define(version: 20160404171511) do
   add_index "instruments_musicians", ["musician_id"], name: "index_instruments_musicians_on_musician_id", using: :btree
 
   create_table "musicians", force: :cascade do |t|
-    t.string   "name",                                null: false
+    t.string   "name",           null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "band_id"
+  end
+
+  add_index "musicians", ["band_id"], name: "index_musicians_on_band_id", using: :btree
+
+  create_table "musicians_event_types", id: false, force: :cascade do |t|
+    t.integer "musician_id"
+    t.integer "event_type_id"
+  end
+
+  add_index "musicians_event_types", ["event_type_id"], name: "index_musicians_event_types_on_event_type_id", using: :btree
+  add_index "musicians_event_types", ["musician_id"], name: "index_musicians_event_types_on_musician_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -179,23 +167,24 @@ ActiveRecord::Schema.define(version: 20160404171511) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "band_id"
+    t.integer  "client_id"
+    t.integer  "musician_id"
   end
 
-  add_index "musicians", ["band_id"], name: "index_musicians_on_band_id", using: :btree
-  add_index "musicians", ["email"], name: "index_musicians_on_email", unique: true, using: :btree
-  add_index "musicians", ["reset_password_token"], name: "index_musicians_on_reset_password_token", unique: true, using: :btree
-
-  create_table "musicians_event_types", id: false, force: :cascade do |t|
-    t.integer "musician_id"
-    t.integer "event_type_id"
-  end
-
-  add_index "musicians_event_types", ["event_type_id"], name: "index_musicians_event_types_on_event_type_id", using: :btree
-  add_index "musicians_event_types", ["musician_id"], name: "index_musicians_event_types_on_musician_id", using: :btree
+  add_index "users", ["band_id"], name: "index_users_on_band_id", using: :btree
+  add_index "users", ["client_id"], name: "index_users_on_client_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["musician_id"], name: "index_users_on_musician_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "events", "clients"
   add_foreign_key "events", "event_types"
   add_foreign_key "instruments", "instrument_types"
   add_foreign_key "musicians", "bands"
+  add_foreign_key "users", "bands"
+  add_foreign_key "users", "clients"
+  add_foreign_key "users", "musicians"
 end
