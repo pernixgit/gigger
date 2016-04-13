@@ -119,19 +119,19 @@ namespace :sample_data do
   def update_or_create_client(attributes)
     client = Client.find_or_initialize_by(name: attributes.delete(:name))
     client.update_attributes(attributes)
-    return client
+    client
   end
 
   def update_or_create_band(attributes)
     band = Band.find_or_initialize_by(name: attributes.delete(:name))
     band.update_attributes(attributes)
-    return band
+    band
   end
 
   def update_or_create_musician(attributes)
     musician = Musician.find_or_initialize_by(name: attributes.delete(:name))
     musician.update_attributes(attributes)
-    return musician
+    musician
   end
 
   def update_or_create_event(attributes)
