@@ -1,5 +1,19 @@
 = form_for(@event) do |f|
   - if @event.errors.any?
     = render partial: 'partials/error_wrapper', locals: { resource: @event }
+
+  = f.label :name
+  = f.text_field :name
+  = f.label :date
+  = f.date_field :date
+  = f.label :time
+  = f.time_field :time
+  = f.label :description
+  = f.text_area :description
+  = f.label :email
+  = f.text_field :email
+  = f.label :phone
+  = f.text_field :phone
+
   .actions
     = f.submit

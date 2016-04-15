@@ -2,5 +2,11 @@
   - if @band.errors.any?
     #error_explanation
       = render partial: 'partials/error_wrapper', locals: { resource: @band }
+
+  = f.label :name
+  = f.text_field :name
+  = f.label :phone
+  = f.text_field :phone
+
   .actions
     = f.submit

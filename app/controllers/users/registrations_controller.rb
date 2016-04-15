@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     case resource
     when :user, User
-      resource.user? ? define_user_type_path : root_path
+      define_user_type_path
     else
       super
     end
