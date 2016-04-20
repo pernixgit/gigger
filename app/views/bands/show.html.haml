@@ -1,4 +1,22 @@
 %p#notice= notice
+
+%h3 Nombre
+%p #{ @band.name }
+
+%h3 Informacion de contacto
+%p Email: #{ @band.user.email }
+%p Telefono: #{ @band.phone }
+
+%h3 Generos
+%ul
+  - for genre in @band.genres
+    %li #{ genre.name }
+
+%h3 Eventos
+%ul
+  - for type in @band.event_types
+    %li #{ type.name }
+
 = link_to 'Edit', edit_band_path(@band)
 |
 = link_to 'Back', bands_path

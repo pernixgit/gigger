@@ -14,6 +14,7 @@ class BandsController < InheritedResources::Base
 
   def create
     @band = Band.new(band_params)
+    @band.user = current_user
 
     if @band.save
       redirect_to bands_path
@@ -38,7 +39,13 @@ class BandsController < InheritedResources::Base
   private
 
   def band_params
-    params.require(:band).permit(:name, :phone)
+    params.require(:band).permit(
+      :name,
+      :phone,
+      :user_id => current_user.id,
+      :genre_ids => [],
+      :event_type_ids => []
+    )
   end
 
   def find_band
