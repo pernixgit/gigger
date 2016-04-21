@@ -1,4 +1,15 @@
 %p#notice= notice
+
+%h3 Nombre
+%p #{ @musician.name }
+
+%h3 Apellido
+%p #{ @musician.last_name }
+
+%h3 Informacion de contacto
+%p Email: #{ @musician.user.email }
+%p Telefono: #{ @musician.phone }
+
 = link_to 'Edit', edit_musician_path(@musician)
 |
 = link_to 'Back', musicians_path
