@@ -44,7 +44,8 @@ class EventsController < InheritedResources::Base
       :time,
       :description,
       :email,
-      :phone
+      :phone,
+      :event_type_id
     )
   end
 

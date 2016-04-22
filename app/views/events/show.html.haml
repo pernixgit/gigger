@@ -1,4 +1,24 @@
 %p#notice= notice
+
+%h3 Nombre
+%p #{ @event.name }
+
+%h3 Tipo de Evento
+%p #{ @event.event_type.name }
+
+%h3 Descripcion
+%p #{ @event.description }
+
+%h3 Fecha
+%p #{ @event.date }
+
+%h3 Hora
+%p #{ @event.time.strftime("%I:%M %p") }
+
+%h3 Informacion de contacto
+%p Email: #{ @event.email }
+%p Telefono: #{ @event.phone }
+
 = link_to 'Edit', edit_event_path(@event)
 |
 = link_to 'Back', events_path
