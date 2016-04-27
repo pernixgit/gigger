@@ -1,14 +1,16 @@
-%header
-  .menu-wrapper
-    %a.logo{href: root_path}
-      %span.logo-icon
-        Insert logo here
-
-    = link_to "Postear nuevo evento", new_event_path
-
-  #header-search-bar.search-wrapper
-    %i.icon-search
-    %input#search-text{placeholder: "Buscar oportunidades", type: "text", value: ""}
+.navbar
+  .navbar-header
+    -#= link_to "HumanGrow", root_path, class: "navbar-brand"
+    = link_to root_path, class: "navbar-brand navbar-logo" do
+      = image_tag "logo.png"
+  #navbar.navbar-collapse.collapse
+    .pull-right
+      %ul.nav.navbar-nav
+        %li.user-menu
+          .user-avatar
+            = image_tag "person-placeholder.png"
+    %button.btn.btn-primary.pull-right
+      poster nuevo evento
 
   .user-wrapper
   - if user_signed_in?
