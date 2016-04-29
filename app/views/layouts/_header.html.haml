@@ -1,31 +1,36 @@
-.navbar
-  .navbar-header
-    -#= link_to "HumanGrow", root_path, class: "navbar-brand"
-    = link_to root_path, class: "navbar-brand navbar-logo" do
-      = image_tag "logo.png"
-  #navbar.navbar-collapse.collapse
-    .pull-right
-      %ul.nav.navbar-nav
-        %li.user-menu
-          .user-avatar
-            = image_tag "person-placeholder.png"
-    %button.btn.btn-primary.pull-right
-      poster nuevo evento
+.container
+  .row
+    .col-md-6
+      = link_to root_path, class: "navbar-brand navbar-logo" do
+        = image_tag "logo.png"
+    .col-md-2
+    .col-md-4
+      %button.btn.btn-sm.btn-primary
+        postear nuevo evento
+      .glyphicon.glyphicon-search
+.navbar-header.navbar-inverse
+  = link_to root_path, class: "navbar-brand navbar-logo" do
+    = image_tag "logo.png"
+.collapse.navbar-collapse
+  .nav.navbar-nav.navbar-right
+    %button.btn.btn-sm.btn-primary
+      postear nuevo evento
+    .glyphicon.glyphicon-search
 
-  .user-wrapper
-  - if user_signed_in?
-    .user-picture
-      Insert circular user picture around here
-      #{new_user?}
-    .user-info
-      %p #{ current_user_type.try(:name) } #{ current_user_type.try(:last_name) }
-      %p #{ current_user.email }
-      = link_to "Cerrar sesion", destroy_user_session_path, method: :delete
-  - else
-    .login
-      %ul.links
-        %li.link 
-          = link_to "Registrarse", new_user_registration_path
-        %li.link
-          = link_to "Iniciar sesion", new_user_session_path
+.user-wrapper
+- if user_signed_in?
+  .user-picture
+    Insert circular user picture around here
+    #{new_user?}
+  .user-info
+    %p #{ current_user_type.try(:name) } #{ current_user_type.try(:last_name) }
+    %p #{ current_user.email }
+    = link_to "Cerrar sesion", destroy_user_session_path, method: :delete
+- else
+  .login
+    %ul.links
+      %li.link 
+        = link_to "Registrarse", new_user_registration_path
+      %li.link
+        = link_to "Iniciar sesion", new_user_session_path
 
