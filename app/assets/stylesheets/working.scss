@@ -32,11 +32,6 @@ body {
   margin-bottom: 0;
 
   li {
-
-    &:last-child {
-      border: none;
-    }
-
     a {
       color: black;
       height: 52px;
@@ -94,7 +89,8 @@ body {
   height: 250px;
   padding: 5% 0 5% 0;
   overflow: hidden;
-  background-color: black;
+  background: url(header.jpg);
+  background-size: cover;
 
   .board-container {
     width: 60%;
@@ -110,7 +106,7 @@ body {
 
   .band-info {
     margin-top: 1%;
-    color: white;
+    color: black;
 
     button {
       background-color: #FF9E16;
@@ -122,6 +118,47 @@ body {
   padding-top: 5%;
   padding-bottom: 5%;
 }
+
+.search-bar-container {
+  height: 100px;
+  padding: 10px;
+
+  .search-bar {
+    width: 13%;
+    margin: 0 auto;
+  }
+
+  .filters-bar {
+    width: 52%;
+    margin: 0 auto;
+    padding: 15px 0;
+
+    li {
+      width: 150px;
+      height: 40px;
+      border-right: solid 1px black;
+
+      &:last-child {
+        border: none;
+      }
+
+      a {
+        height: 40px;
+        padding: 10px 15px;
+      }
+    }
+
+    .caret {
+      margin-left: 70px;
+    }
+  }
+}
+
+
+
+
+
+
 
 
 
