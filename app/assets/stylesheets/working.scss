@@ -12,6 +12,10 @@ body {
   padding-top: 10px;
 }
 
+.center {
+  text-align: center;
+}
+
 #navbar-background{
   background-color: #e5e5e5;
 }
@@ -85,6 +89,15 @@ body {
   }
 }
 
+footer {
+  margin-top: 20px;
+  height: 50px;
+  width: 100%;
+  background-color: #4c4c4c;
+  line-height: 50px;
+  color: white;
+}
+
 .cover {
   position: relative;
   height: 250px;
@@ -151,8 +164,20 @@ body {
   }
 }
 
+.band-summary {
+  border: 1px solid #CFCDCD;
 
+  img {
+    display: block;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+  }
 
+  h3 {
+    margin-top: 10px;
+  }
+}
 
 
 
