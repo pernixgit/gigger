@@ -86,11 +86,25 @@ body {
 }
 
 .cover {
+  position: relative;
   height: 250px;
   padding: 5% 0 5% 0;
   overflow: hidden;
   background: url(header.jpg);
   background-size: cover;
+
+  .search-bar {
+    width: 35%;
+    margin: auto;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+
+    input {
+      width: 100%;
+    }
+  }
 
   .board-container {
     width: 60%;
@@ -120,36 +134,19 @@ body {
 }
 
 .search-bar-container {
-  height: 100px;
-  padding: 10px;
-
-  .search-bar {
-    width: 13%;
-    margin: 0 auto;
-  }
+  height: 52px;
+  background-color: #e5e5e5;
 
   .filters-bar {
     width: 52%;
     margin: 0 auto;
-    padding: 15px 0;
 
     li {
       width: 150px;
-      height: 40px;
-      border-right: solid 1px black;
 
-      &:last-child {
-        border: none;
+      .caret {
+        margin-left: 70px;
       }
-
-      a {
-        height: 40px;
-        padding: 10px 15px;
-      }
-    }
-
-    .caret {
-      margin-left: 70px;
     }
   }
 }
