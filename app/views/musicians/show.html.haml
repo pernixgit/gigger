@@ -1,14 +1,63 @@
-%p#notice= notice
+= render partial: 'partials/cover_board'
 
-%h3 Nombre
-%p #{ @musician.name }
+.row.spacing-top
+  .col-md-6.col-md-offset-3.lightgrey
+    %h3.bottom_margin
+      Descripción
+    %p.bottom_margin
+      Most people consider hair combing a routine activity. There are people who keep a particular hair style throughout their life. On the other hand, younger generations adopt new hair styles according to new trends.
+    %p.bottom_margin
+      Tags: #{@musician.genres.first}
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %p.bottom_margin
+      Demos:
+    .row
+      %p.bottom_margin
+        .col-md-1.glyphicon.glyphicon-volume-up
+        Nombre del demo
 
-%h3 Apellido
-%p #{ @musician.last_name }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %p.bottom_margin
+      Videos:
+    .video_image
+      = image_tag "music-video.png"
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %p.bottom_margin
+      Website:
+    %p.bottom_margin
+    #{@musician.name} web page
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %p.bottom_margin
+      Redes Sociales:
+    %i.fa.fa-facebook
+    %i.fa.fa-instagram
+    %i.fa.fa-youtube
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    .col-md-offset-5
+      .btn.btn-default.orange_button.bottom_margin
+        Contratar
 
-%h3 Informacion de contacto
-%p Email: #{ @musician.user.email }
-%p Telefono: #{ @musician.phone }
+/ %p#notice= notice
+
+/ %h3 Nombre
+/ %p #{ @musician.name }
+
+/ %h3 Apellido
+/ %p #{ @musician.last_name }
+
+/ %h3 Informacion de contacto
+/ %p Email: #{ @musician.user.email }
+/ %p Telefono: #{ @musician.phone }
 
 = link_to 'Edit', edit_musician_path(@musician)
 |
