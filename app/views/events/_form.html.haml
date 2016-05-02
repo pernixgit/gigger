@@ -14,6 +14,8 @@
   = f.text_field :email
   = f.label :phone
   = f.text_field :phone
+  = f.label :event_type
+  = f.select :event_type_id, options_from_collection_for_select(EventType.all, "id", "name")
 
   .actions
     = f.submit

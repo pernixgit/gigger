@@ -7,6 +7,16 @@
   = f.text_field :name
   = f.label :phone
   = f.text_field :phone
+  = f.label :genres
+  - for genre in Genre.all
+    %div
+      = check_box_tag "band[genre_ids][]", genre.id, @band.genres.include?(genre)
+      = genre.name
+  = f.label :event_types
+  - for type in EventType.all
+    %div
+      = check_box_tag "band[event_type_ids][]", type.id, @band.event_types.include?(type)
+      = type.name
 
   .actions
     = f.submit

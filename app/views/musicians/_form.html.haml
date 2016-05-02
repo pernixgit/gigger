@@ -11,6 +11,19 @@
   = f.text_field :identification
   = f.label :phone
   = f.text_field :phone
+  = f.label :instruments
+  - for instrument in Instrument.all
+    %div
+      = check_box_tag "musician[instrument_ids][]", instrument.id, @musician.instruments.include?(instrument)
+  - for genre in Genre.all
+    %div
+      = check_box_tag "musician[genre_ids][]", genre.id, @musician.genres.include?(genre)
+      = genre.name
+  = f.label :event_types
+  - for type in EventType.all
+    %div
+      = check_box_tag "musician[event_type_ids][]", type.id, @musician.event_types.include?(type)
+      = type.name
 
   .actions
     = f.submit
