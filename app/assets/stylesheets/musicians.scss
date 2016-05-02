@@ -1,3 +1,37 @@
-// Place all the styles related to the Musicians controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.grey {
+  background-color: #B3B3B3;
+}
+.container{
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+.small_frame {
+  border:1px solid grey;
+}
+.lightgrey {
+  background-color: #F0F0F0;
+
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+}
+.bottom_margin{
+  margin-bottom: 2%
+}
+.top_margin{
+  margin-top: 10%
+}
+.orange_button{
+  background: #FF9E16;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.20);
+  font-size: 14px;
+  color: #F5F5F5;
+  letter-spacing: 0px;
+  line-height: 16px;
+}
+.video_image {
+  zoom: 30%;
+}

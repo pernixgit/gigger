@@ -1,24 +1,39 @@
-.search-bar-wrapper
-  %i.icon-search
-  %input#search-bar-text{placeholder: "search something", type: "text", value: ""}
-
-.filters-bar
-  %ul.filter-list
-    %li.filter
-      %select
-        %option{:value => "volvo"} Volvo
-        %option{:value => "saab"} Saab
-        %option{:value => "mercedes"} Mercedes
-        %option{:value => "audi"} Audi
-    %li.filter
-      %select{placeholder: "filtro"}
-        %option{:value => "volvo"} Volvo
-        %option{:value => "saab"} Saab
-        %option{:value => "mercedes"} Mercedes
-        %option{:value => "audi"} Audi
-    %li.filter
-      %select{placeholder: "filtro"}
-        %option{:value => "volvo"} Volvo
-        %option{:value => "saab"} Saab
-        %option{:value => "mercedes"} Mercedes
-        %option{:value => "audi"} Audi
+.search-bar-container
+  .filters-bar
+    .navbar
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li
+            %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
+              Filtro
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{ href: "#", value: "volvo"} Volvo
+                %a{ href: "#", value: "saab"} Saab
+                %a{ href: "#", value: 'mercedes'} Mercedes
+                %a{ href: "#", value: "audi"} Audi
+          %li
+            %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
+              Filtro
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{ href: "#", value: "volvo"} Volvo
+                %a{ href: "#", value: "saab"} Saab
+                %a{ href: "#", value: 'mercedes'} Mercedes
+                %a{ href: "#", value: "audi"} Audi
+          %li
+            %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
+              Filtro
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{ href: "#", value: "volvo"} Volvo
+                %a{ href: "#", value: "saab"} Saab
+                %a{ href: "#", value: 'mercedes'} Mercedes
+                %a{ href: "#", value: "audi"} Audi
+        %ul.nav.navbar-nav
+          %li
+            %button.btn.btn-sm.btn-primary
+              postear nuevo evento
