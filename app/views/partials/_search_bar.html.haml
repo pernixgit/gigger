@@ -9,10 +9,7 @@
               %span.caret
             %ul.dropdown-menu
               %li
-                %a{ href: "#", value: "volvo"} Volvo
-                %a{ href: "#", value: "saab"} Saab
-                %a{ href: "#", value: 'mercedes'} Mercedes
-                %a{ href: "#", value: "audi"} Audi
+                = select_tag :event_type, options_from_collection_for_select(EventType.all, "id", "name")
           %li
             %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
               Filtro

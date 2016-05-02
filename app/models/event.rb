@@ -1,4 +1,8 @@
 class Event < ActiveRecord::Base
+  include Filterable
+
+  scope :event_type, -> (event_type) { where event_type_id: event_type}
+
   belongs_to :client
   belongs_to :event_type
 

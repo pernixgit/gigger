@@ -5,7 +5,7 @@ class EventsController < InheritedResources::Base
   before_action :find_event, except: [:index, :new, :create]
 
   def index
-    @events = Event.all
+    @events = Event.filter(event_params.slice(:event_type))
   end
 
   def show; end
@@ -38,7 +38,7 @@ class EventsController < InheritedResources::Base
   private
 
   def event_params
-    params.require(:event).permit(
+    params.permit(
       :name,
       :date,
       :time,

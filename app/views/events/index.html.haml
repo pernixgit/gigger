@@ -3,81 +3,22 @@
 
 %p#notice= notice
 
-.row.spacing-top
-  .col-md-2.col-md-offset-2.band-summary
-    = image_tag "band-cover.jpg"
-    .col-md-12
-      %h3 Band Name
-      %h5 Tag tag tag
-      %hr
-      .center
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-  .col-md-2.col-md-offset-1.band-summary
-    = image_tag "band-cover.jpg"
-    .col-md-12
-      %h3 Band Name
-      %h5 Tag tag tag
-      %hr
-      .center
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-  .col-md-2.col-md-offset-1.band-summary
-    = image_tag "band-cover.jpg"
-    .col-md-12
-      %h3 Band Name
-      %h5 Tag tag tag
-      %hr
-      .center
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-
-.row.spacing-top
-  .col-md-2.col-md-offset-2.band-summary
-    = image_tag "band-cover.jpg"
-    .col-md-12
-      %h3 Band Name
-      %h5 Tag tag tag
-      %hr
-      .center
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-  .col-md-2.col-md-offset-1.band-summary
-    = image_tag "band-cover.jpg"
-    .col-md-12
-      %h3 Band Name
-      %h5 Tag tag tag
-      %hr
-      .center
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-  .col-md-2.col-md-offset-1.band-summary
-    = image_tag "band-cover.jpg"
-    .col-md-12
-      %h3 Band Name
-      %h5 Tag tag tag
-      %hr
-      .center
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
-        .glyphicon.glyphicon-star
+- @events.in_groups_of(3).each do |event_group|
+  .row.spacing-top
+    - event_group.each do |event|
+      -if event
+        .col-md-2.col-md-offset-2.band-summary
+          = link_to "#{image_tag('band-cover.jpg')}".html_safe, event
+          .col-md-12
+            %h3 #{ event.name }
+            %h5 #{ event.description }
+            %hr
+            .center
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
 
 / %h1 Listing Events
 / %table
