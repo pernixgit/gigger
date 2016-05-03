@@ -5,7 +5,7 @@ class MusiciansController < InheritedResources::Base
   before_action :find_musician, except: [:index, :new, :create]
 
   def index
-    @musicians = Musician.filter(params.slice(:event_type, :starts_with))
+    @musicians = Musician.filter(params.slice(:event_type, :starts_with, :genre))
   end
 
   def show; end

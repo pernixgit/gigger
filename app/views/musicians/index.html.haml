@@ -3,13 +3,19 @@
 
 %p#notice= notice
 
-%h1 Listing Musicians
-%table
-  %thead
-    %tr
-      %th{colspan: '3'}
-  %tbody
-    - @musicians.each do |musician|
-      %tr
-        %td= musician.name
-        %td= link_to 'Show', musician
+- @musicians.in_groups_of(3).each do |musician_group|
+  .row.spacing-top
+    - musician_group.each do |musician|
+      -if musician
+        .col-md-2.col-md-offset-2.band-summary
+          = link_to "#{image_tag('band-cover.jpg')}".html_safe, musician
+          .col-md-12
+            %h3 #{ musician.name }
+            %hr
+            .center
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+              .glyphicon.glyphicon-star
+
