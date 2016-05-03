@@ -1,4 +1,8 @@
 class Musician < ActiveRecord::Base
+  include Filterable
+
+  scope :event_type, -> (event_type) { includes(:event_types).where(id: event_type) }
+  scope :starts_with, -> (name) { where('name like ?', "#{name}%") }
   
   belongs_to :band
   has_and_belongs_to_many :instruments

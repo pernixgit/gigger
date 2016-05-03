@@ -5,7 +5,7 @@ class EventsController < InheritedResources::Base
   before_action :find_event, except: [:index, :new, :create]
 
   def index
-    @events = Event.filter(event_params.slice(:event_type))
+    @events = Event.filter(params.slice(:event_type, :starts_with))
   end
 
   def show; end
