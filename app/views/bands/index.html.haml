@@ -1,6 +1,6 @@
 %p#notice= notice
 
-= render partial: 'search_bar'
+= render partial: 'partials/search_bar', locals: { controller: 'bands', event_type_collection: EventType.all, genre_collection: Genre.all }
 
 - @bands.in_groups_of(3).each do |band_group|
   .row.spacing-top

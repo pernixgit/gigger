@@ -1,5 +1,5 @@
 = render partial: 'partials/cover_search'
-= render partial: 'search_bar'
+= render partial: 'partials/search_bar', locals: { 'events', event_type_collection: EventType.all }
 
 %p#notice= notice
 
