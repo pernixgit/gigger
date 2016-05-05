@@ -8,5 +8,6 @@ FactoryGirl.define do
     time { Faker::Time.forward(23, :morning) }
     email { Faker::Internet.email }
     phone { Faker::PhoneNumber.phone_number }
+    event_type
   end
 end
