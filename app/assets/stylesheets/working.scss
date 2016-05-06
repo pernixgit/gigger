@@ -164,12 +164,8 @@ footer {
     width: 52%;
     margin: 0 auto;
 
-    li {
-      width: 150px;
-
-      .caret {
-        margin-left: 70px;
-      }
+    .navbar-form {
+      text-align: center;
     }
   }
 }

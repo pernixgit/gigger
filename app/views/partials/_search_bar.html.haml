@@ -2,11 +2,13 @@
   .filters-bar
     .navbar
       .navbar-collapse.collapse
-        %ul.nav.navbar-nav
-          %li
+        .navbar-form
+          .form-group
             = form_tag({controller: controller, action: 'index'}, method: 'get') do
-              = select_tag 'event_type', options_from_collection_for_select(event_type_collection, :id, :name), prompt: 'Tipo de evento'
+              = select_tag 'event_type',
+                options_from_collection_for_select(event_type_collection, :id, :name), prompt: 'Tipo de evento', class: "form-control"
               - if defined?(genre_collection)
-                = select_tag 'genre', options_from_collection_for_select(genre_collection, :id, :name), prompt: 'Genero musical'
-              = text_field_tag :starts_with, nil, placeholder: 'Nombre'
+                = select_tag 'genre',
+                  options_from_collection_for_select(genre_collection, :id, :name), prompt: 'Genero musical', class: "form-control"
+              = text_field_tag :starts_with, nil, placeholder: 'Nombre', class: "form-control"
               = submit_tag 'Buscar', name: nil, class: 'btn btn-sm btn-primary'
