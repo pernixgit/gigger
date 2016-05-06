@@ -4,36 +4,9 @@
       .navbar-collapse.collapse
         %ul.nav.navbar-nav
           %li
-            %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
-              Filtro
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{ href: "#", value: "volvo"} Volvo
-                %a{ href: "#", value: "saab"} Saab
-                %a{ href: "#", value: 'mercedes'} Mercedes
-                %a{ href: "#", value: "audi"} Audi
-          %li
-            %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
-              Filtro
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{ href: "#", value: "volvo"} Volvo
-                %a{ href: "#", value: "saab"} Saab
-                %a{ href: "#", value: 'mercedes'} Mercedes
-                %a{ href: "#", value: "audi"} Audi
-          %li
-            %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
-              Filtro
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{ href: "#", value: "volvo"} Volvo
-                %a{ href: "#", value: "saab"} Saab
-                %a{ href: "#", value: 'mercedes'} Mercedes
-                %a{ href: "#", value: "audi"} Audi
-        %ul.nav.navbar-nav
-          %li
-            %button.btn.btn-sm.btn-primary
-              postear nuevo evento
+            = form_tag({controller: controller, action: 'index'}, method: 'get') do
+              = select_tag 'event_type', options_from_collection_for_select(event_type_collection, :id, :name), prompt: 'Tipo de evento'
+              - if defined?(genre_collection)
+                = select_tag 'genre', options_from_collection_for_select(genre_collection, :id, :name), prompt: 'Genero musical'
+              = text_field_tag :starts_with, nil, placeholder: 'Nombre'
+              = submit_tag 'Buscar', name: nil, class: 'btn btn-sm btn-primary'

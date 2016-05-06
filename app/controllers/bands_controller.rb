@@ -5,7 +5,7 @@ class BandsController < InheritedResources::Base
   before_action :find_band, except: [:index, :new, :create]
 
   def index
-    @bands = Band.all
+    @bands = Band.filter(params.slice(:event_type, :starts_with, :genre))
   end
 
   def show; end

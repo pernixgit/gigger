@@ -1,8 +1,7 @@
 require 'faker'
 
 FactoryGirl.define do
-  factory :band do
+  factory :genre do
     name { Faker::Name.name }
-    phone { Faker::PhoneNumber.phone_number }
   end
 end
