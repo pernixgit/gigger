@@ -7,7 +7,8 @@
   .row.spacing-top
     - event_group.each do |event|
       -if event
-        .col-md-2.col-md-offset-2.band-summary
+        .col-md-1
+        .col-md-2.band-summary
           = link_to "#{image_tag('band-cover.jpg')}".html_safe, event
           .col-md-12
             %h3 #{ event.name }
@@ -19,3 +20,4 @@
               .glyphicon.glyphicon-star
               .glyphicon.glyphicon-star
               .glyphicon.glyphicon-star
+        .col-md-1
