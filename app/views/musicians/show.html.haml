@@ -59,6 +59,9 @@
 / %p Email: #{ @musician.user.email }
 / %p Telefono: #{ @musician.phone }
 
-= link_to 'Edit', edit_musician_path(@musician)
-|
-= link_to 'Back', musicians_path
+%nav
+  %ul.pager
+    %li
+      = link_to 'Edit', edit_musician_path(@musician)
+    %li
+      = link_to 'Back', musicians_path
