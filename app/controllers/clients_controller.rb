@@ -42,7 +42,8 @@ class ClientsController < InheritedResources::Base
       :name,
       :last_name,
       :identification,
-      :phone
+      :phone,
+      :image
     )
   end
 

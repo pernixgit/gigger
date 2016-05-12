@@ -42,6 +42,7 @@ class BandsController < InheritedResources::Base
     params.require(:band).permit(
       :name,
       :phone,
+      :image,
       :user_id => current_user.id,
       :genre_ids => [],
       :event_type_ids => []

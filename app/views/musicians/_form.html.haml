@@ -11,6 +11,8 @@
   = f.text_field :identification
   = f.label :phone
   = f.text_field :phone
+  = f.label :image
+  = f.file_field :image
   = f.label :instruments
   - for instrument in Instrument.all
     %div

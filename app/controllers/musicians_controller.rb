@@ -43,6 +43,7 @@ class MusiciansController < InheritedResources::Base
       :last_name,
       :identification,
       :phone,
+      :image,
       :genre_ids => [],
       :instrument_ids => [],
       :event_type_ids => []

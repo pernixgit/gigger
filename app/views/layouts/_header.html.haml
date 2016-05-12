@@ -17,7 +17,10 @@
         %li.user-menu
           %a.dropdown-toggle{ href: "#", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: "true", expanded: "false" }}
             .user-avatar
-              = image_tag "person-placeholder.png"
+              - if true
+                = image_tag current_user_type.image.url
+              - else
+                = image_tag "person-placeholder.png"
             %span.caret
           %ul.dropdown-menu
             %li

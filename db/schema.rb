@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407223623) do
+ActiveRecord::Schema.define(version: 20160511224426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,10 +35,14 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bands", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",               null: false
     t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "bands_event_types", id: false, force: :cascade do |t|
@@ -58,12 +62,16 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "bands_genres", ["genre_id"], name: "index_bands_genres_on_genre_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
-    t.string   "name",           null: false
+    t.string   "name",               null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "event_types", force: :cascade do |t|
@@ -137,13 +145,17 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "instruments_musicians", ["musician_id"], name: "index_instruments_musicians_on_musician_id", using: :btree
 
   create_table "musicians", force: :cascade do |t|
-    t.string   "name",           null: false
+    t.string   "name",               null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "band_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "musicians", ["band_id"], name: "index_musicians_on_band_id", using: :btree

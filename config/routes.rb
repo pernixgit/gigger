@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   get 'define-user-type' => 'pages#define_user_type'
 
-  root 'events#index'
+  root 'musicians#index'
 end

@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'hologram'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
+gem 'paperclip'
+gem 'fog'
 
 # misc
 gem 'turbolinks'
