@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513174614) do
+ActiveRecord::Schema.define(version: 20160513184758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,28 @@ ActiveRecord::Schema.define(version: 20160513174614) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["musician_id"], name: "index_users_on_musician_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "youtube_links", force: :cascade do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "youtube_links_bands", id: false, force: :cascade do |t|
+    t.integer "youtube_link_id"
+    t.integer "band_id"
+  end
+
+  add_index "youtube_links_bands", ["band_id"], name: "index_youtube_links_bands_on_band_id", using: :btree
+  add_index "youtube_links_bands", ["youtube_link_id"], name: "index_youtube_links_bands_on_youtube_link_id", using: :btree
+
+  create_table "youtube_links_musicians", id: false, force: :cascade do |t|
+    t.integer "youtube_link_id"
+    t.integer "musician_id"
+  end
+
+  add_index "youtube_links_musicians", ["musician_id"], name: "index_youtube_links_musicians_on_musician_id", using: :btree
+  add_index "youtube_links_musicians", ["youtube_link_id"], name: "index_youtube_links_musicians_on_youtube_link_id", using: :btree
 
   add_foreign_key "events", "clients"
   add_foreign_key "events", "event_types"
