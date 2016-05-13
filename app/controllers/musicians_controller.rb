@@ -14,6 +14,7 @@ class MusiciansController < InheritedResources::Base
 
   def create
     @musician = Musician.new(musician_params)
+    @musician.user = current_user
 
     if @musician.save
       redirect_to musicians_path

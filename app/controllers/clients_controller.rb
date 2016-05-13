@@ -14,6 +14,7 @@ class ClientsController < InheritedResources::Base
 
   def create
     @client = Client.new(client_params)
+    @client.user = current_user
 
     if @client.save
       redirect_to clients_path

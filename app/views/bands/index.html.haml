@@ -5,10 +5,13 @@
 - @bands.in_groups_of(3).each do |band_group|
   .row.spacing-top
     - band_group.each do |band|
-      -if band
+      - if band
         .col-md-1
         .col-md-2.band-summary
-          = link_to "#{image_tag('band-cover.jpg')}".html_safe, band
+          - if band.image.url != default_image_path
+            = link_to "#{image_tag band.image.url}".html_safe, band
+          - else
+            = link_to "#{image_tag('band-cover.jpg')}".html_safe, band
           .col-md-12
             %h3 #{ band.name }
             %hr

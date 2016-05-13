@@ -6,4 +6,8 @@ module ApplicationHelper
   def new_user?
     current_user.band.nil? && current_user.musician.nil? && current_user.client.nil?
   end
+
+  def default_image_path
+    '/images/original/missing.png'
+  end
 end

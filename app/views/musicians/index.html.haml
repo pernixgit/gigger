@@ -6,10 +6,13 @@
 - @musicians.in_groups_of(3).each do |musician_group|
   .row.spacing-top
     - musician_group.each do |musician|
-      -if musician
+      - if musician
         .col-md-1
         .col-md-2.band-summary
-          = link_to "#{image_tag('band-cover.jpg')}".html_safe, musician
+          - if musician.image.url != default_image_path
+            = link_to "#{image_tag musician.image.url}".html_safe, musician
+          - else
+            = link_to "#{image_tag('band-cover.jpg')}".html_safe, musician
           .col-md-12
             %h3 #{ musician.name }
             %hr
