@@ -12,6 +12,11 @@ class MusiciansController < InheritedResources::Base
 
   def edit; end
 
+  def new
+    @musician = Musician.new
+    5.times { @musician.youtube_links.build }
+  end
+
   def create
     @musician = Musician.new(musician_params)
     @musician.user = current_user
@@ -45,6 +50,7 @@ class MusiciansController < InheritedResources::Base
       :identification,
       :phone,
       :image,
+      :youtube_links_attributes => [:url],
       :genre_ids => [],
       :instrument_ids => [],
       :event_type_ids => []

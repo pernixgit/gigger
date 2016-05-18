@@ -12,6 +12,11 @@ class BandsController < InheritedResources::Base
 
   def edit; end
 
+  def new
+    @band = Band.new
+    5.times { @band.youtube_links.build }
+  end
+
   def create
     @band = Band.new(band_params)
     @band.user = current_user
@@ -43,6 +48,7 @@ class BandsController < InheritedResources::Base
       :name,
       :phone,
       :image,
+      :youtube_links_attributes => [:url],
       :user_id => current_user.id,
       :genre_ids => [],
       :event_type_ids => []

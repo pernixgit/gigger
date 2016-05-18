@@ -14,6 +14,7 @@
   = f.label :image
   = f.file_field :image
   = f.label :instruments
+
   - for instrument in Instrument.all
     %div
       = check_box_tag "musician[instrument_ids][]", instrument.id, @musician.instruments.include?(instrument)
@@ -27,5 +28,9 @@
       = check_box_tag "musician[event_type_ids][]", type.id, @musician.event_types.include?(type)
       = type.name
 
+  = f.label :youtube_links
+  = f.fields_for :youtube_links, include_id: false do |links|
+    = links.text_field :url
+    = links.check_box :_destroy
   .actions
     = f.submit

@@ -12,6 +12,8 @@ class Musician < ActiveRecord::Base
 
   has_many :youtube_links
 
+  accepts_nested_attributes_for :youtube_links, reject_if: lambda { |yl| yl['url'].blank? }, allow_destroy: true
+
   has_one :user
 
   validates :name, :last_name, :phone, :identification, presence: true
