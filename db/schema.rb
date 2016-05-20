@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 20160518222308) do
     t.datetime "image_updated_at"
   end
 
-  create_table "youtube_links_bands", id: false, force: :cascade do |t|
+  create_table "youtube_links_bands", force: :cascade do |t|
     t.integer "youtube_link_id"
     t.integer "band_id"
   end
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 20160518222308) do
   add_index "youtube_links_bands", ["band_id"], name: "index_youtube_links_bands_on_band_id", using: :btree
   add_index "youtube_links_bands", ["youtube_link_id"], name: "index_youtube_links_bands_on_youtube_link_id", using: :btree
 
-  create_table "youtube_links_musicians", id: false, force: :cascade do |t|
+  create_table "youtube_links_musicians", force: :cascade do |t|
     t.integer "youtube_link_id"
     t.integer "musician_id"
   end
