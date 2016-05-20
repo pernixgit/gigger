@@ -6,7 +6,6 @@ class Band < ActiveRecord::Base
   scope :starts_with, -> (name) { where('name like ?', "%#{name}%") }
   
   has_many :musicians
-  has_many :youtube_links
   has_and_belongs_to_many :event_types
   has_and_belongs_to_many :genres
 
