@@ -7,7 +7,9 @@
     %p.bottom_margin
       Most people consider hair combing a routine activity. There are people who keep a particular hair style throughout their life. On the other hand, younger generations adopt new hair styles according to new trends.
     %p.bottom_margin
-      Tags: #{@musician.genres.first}
+      Tags:
+      - @musician.genres.each do |genre|
+        #{ genre.name }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
@@ -23,8 +25,10 @@
     %hr
     %p.bottom_margin
       Videos:
-    .video_image
-      = image_tag "music-video.png"
+
+      - @musician.youtube_links.each do |link|
+        .video_image
+          = link_to "#{image_tag get_youtube_thumbnail(link.url)}".html_safe, link.url
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
