@@ -7,6 +7,8 @@
   = f.text_field :name
   = f.label :phone
   = f.text_field :phone
+  = f.label :image
+  = f.file_field :image
   = f.label :genres
   - for genre in Genre.all
     %div
@@ -17,6 +19,9 @@
     %div
       = check_box_tag "band[event_type_ids][]", type.id, @band.event_types.include?(type)
       = type.name
-
+  = f.label :youtube_links
+  = f.fields_for :youtube_links, include_id: false do |links|
+    = links.text_field :url
+    = links.check_box :_destroy
   .actions
     = f.submit

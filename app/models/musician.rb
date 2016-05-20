@@ -10,7 +10,17 @@ class Musician < ActiveRecord::Base
   has_and_belongs_to_many :event_types
   has_and_belongs_to_many :genres
 
+  has_many :youtube_links
+
+  accepts_nested_attributes_for :youtube_links, reject_if: lambda { |yl| yl['url'].blank? }, allow_destroy: true
+
   has_one :user
 
   validates :name, :last_name, :phone, :identification, presence: true
+
+  has_attached_file :image, styles: { small: '64x64', med: '100x100', large: '200x200' }
+
+  validates_attachment :image,
+                       content_type: { content_type: %w(image/jpg image/png image/jpeg) },
+                       size: { in: 0..2048.kilobytes }, default_url: '/assets/missing.png'
 end

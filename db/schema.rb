@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407223623) do
+ActiveRecord::Schema.define(version: 20160518222308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,10 +35,14 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bands", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",               null: false
     t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "bands_event_types", id: false, force: :cascade do |t|
@@ -58,12 +62,16 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "bands_genres", ["genre_id"], name: "index_bands_genres_on_genre_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
-    t.string   "name",           null: false
+    t.string   "name",               null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "event_types", force: :cascade do |t|
@@ -81,16 +89,20 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "event_types_musicians", ["musician_id"], name: "index_event_types_musicians_on_musician_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",          null: false
+    t.string   "name",               null: false
     t.date     "date"
     t.time     "time"
     t.text     "description"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "client_id"
     t.integer  "event_type_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "events", ["client_id"], name: "index_events_on_client_id", using: :btree
@@ -137,13 +149,17 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "instruments_musicians", ["musician_id"], name: "index_instruments_musicians_on_musician_id", using: :btree
 
   create_table "musicians", force: :cascade do |t|
-    t.string   "name",           null: false
+    t.string   "name",               null: false
     t.string   "last_name"
     t.string   "identification"
     t.string   "phone"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "band_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "musicians", ["band_id"], name: "index_musicians_on_band_id", using: :btree
@@ -179,6 +195,34 @@ ActiveRecord::Schema.define(version: 20160407223623) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["musician_id"], name: "index_users_on_musician_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "youtube_links", force: :cascade do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "musician_id"
+    t.integer  "band_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "youtube_links_bands", force: :cascade do |t|
+    t.integer "youtube_link_id"
+    t.integer "band_id"
+  end
+
+  add_index "youtube_links_bands", ["band_id"], name: "index_youtube_links_bands_on_band_id", using: :btree
+  add_index "youtube_links_bands", ["youtube_link_id"], name: "index_youtube_links_bands_on_youtube_link_id", using: :btree
+
+  create_table "youtube_links_musicians", force: :cascade do |t|
+    t.integer "youtube_link_id"
+    t.integer "musician_id"
+  end
+
+  add_index "youtube_links_musicians", ["musician_id"], name: "index_youtube_links_musicians_on_musician_id", using: :btree
+  add_index "youtube_links_musicians", ["youtube_link_id"], name: "index_youtube_links_musicians_on_youtube_link_id", using: :btree
 
   add_foreign_key "events", "clients"
   add_foreign_key "events", "event_types"

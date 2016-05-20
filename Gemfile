@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'hologram'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
+gem 'paperclip'
+gem 'fog'
 
 # misc
 gem 'turbolinks'
@@ -26,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate', '>=2.6.0'
 gem 'haml'
 gem 'haml-rails', '~> 0.9.0'
+gem 'youtube_it'
 
 group :test do
   gem 'rspec-rails', '~> 3.4'
