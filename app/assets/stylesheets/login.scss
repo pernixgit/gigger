@@ -1,0 +1,73 @@
+#login {
+  .field {
+    input {
+      color: black;
+      outline: 0;
+    }
+
+    label {
+      padding-top: 3px;
+    }
+  }
+  .login-box {
+    display: inline-block;
+    width: 450px;
+    height: 180px;
+    padding: 30px 20px 20px 20px;
+    background-color: #e5e5e5;
+    color: #4c4c4c;
+    position: fixed;
+    margin: auto;
+    top: -47px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+
+    .actions {
+      padding-top: 20px;
+      float: right;
+    }
+
+    .password-field {
+      padding-top: 25px;
+    }
+  }
+
+  .circle-container {
+    display: inline-block;
+    width: 500px;
+    height: 500px;
+    position: fixed;
+    margin: auto;
+    background-color: transparent;
+    border-radius: 50%;
+    border-width: 130px;
+    border-style: solid;
+    border-right-color: #4c4c4c;
+    border-top-color: #4c4c4c;
+    border-left-color: #4c4c4c;
+    border-bottom-color: #4c4c4c;
+    transform: rotate(20deg);
+    opacity: 0.7;
+    top: -40px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .title {
+    img {
+      margin: 0 0 10px 30px;
+    }
+
+    width: 175px;
+    height: 100px;
+    position: fixed;
+    margin: auto;
+    top: -250px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
