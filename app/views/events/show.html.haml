@@ -1,24 +1,45 @@
-%p#notice= notice
+= render partial: 'partials/cover_board', locals: { resource: @event }
 
-%h3 Nombre
-%p #{ @event.name }
+.row.spacing-top
+  .col-md-6.col-md-offset-3.lightgrey
+    %p.bottom_margin
+      %h3 Description:
+      %p #{ @event.description }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %h3 Date & time:
+    %h4.bottom_margin
+      When?
+    %p.bottom_margin
+      #{ @event.date }
+    %h4.bottom_margin
+      What time?
+    %p.bottom_margin
+      #{ @event.time.strftime("%I:%M %p") }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %h3 Contact info:
+    %h4.bottom_margin
+      Email:
+    %p.bottom_margin
+      #{ @event.email }
+    - if @event.phone
+      %h4.bottom_margin
+        Phone:
+      %p.bottom_margin
+        #{ @event.phone }
 
-%h3 Tipo de Evento
-%p #{ @event.event_type.name }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    .col-md-offset-5
 
-%h3 Descripcion
-%p #{ @event.description }
-
-%h3 Fecha
-%p #{ @event.date }
-
-%h3 Hora
-%p #{ @event.time.strftime("%I:%M %p") }
-
-%h3 Informacion de contacto
-%p Email: #{ @event.email }
-%p Telefono: #{ @event.phone }
-
-= link_to 'Edit', edit_event_path(@event)
-|
-= link_to 'Back', events_path
+%nav
+  %ul.pager
+    - if current_user && current_user.email == @event.user.email
+      %li
+        = link_to 'Edit', edit_band_path(@event)
+    %li
+      = link_to 'Go back', bands_path
