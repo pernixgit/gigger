@@ -1,22 +1,44 @@
-%p#notice= notice
+= render partial: 'partials/cover_board', locals: { resource: @band }
+/ %p#notice= notice
 
-%h3 Nombre
-%p #{ @band.name }
+.row.spacing-top
+  .col-md-6.col-md-offset-3.lightgrey
+    %h3.bottom_margin
+      Nombre
+    %h4.bottom_margin
+      #{ @band.name }
 
-%h3 Informacion de contacto
-%p Email: #{ @band.user.email }
-%p Telefono: #{ @band.phone }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %h3.bottom_margin
+      Informacion de contacto
+    %p
+      %strong Email: 
+      #{ @band.user.email }
+    %p 
+      %strong Telefono: 
+      #{ @band.phone }
 
-%h3 Generos
-%ul
-  - for genre in @band.genres
-    %li #{ genre.name }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %h3 Generos
+    %ul
+      - for genre in @band.genres
+        %li #{ genre.name }
 
-%h3 Eventos
-%ul
-  - for type in @band.event_types
-    %li #{ type.name }
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %h3 Eventos
+    %ul
+      - for type in @band.event_types
+        %li #{ type.name }
 
-= link_to 'Edit', edit_band_path(@band)
-|
-= link_to 'Back', bands_path
+%nav
+  %ul.pager
+    %li
+      = link_to 'Edit', edit_band_path(@band)
+    %li
+      = link_to 'Back', bands_path
