@@ -1,3 +1,7 @@
-%h1 New Band
+%h1.center
+  Crear Banda
 = render 'form'
-= link_to 'Back', bands_path
+%nav
+  %ul.pager
+    %li
+      = link_to 'Atrás', bands_path

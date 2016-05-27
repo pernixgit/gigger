@@ -1,27 +1,51 @@
-= form_for(@band) do |f|
-  - if @band.errors.any?
-    #error_explanation
-      = render partial: 'partials/error_wrapper', locals: { resource: @band }
+.form-content
+  = form_for @band, html: {class: 'form-inline'} do |f|
+    - if @band.errors.any?
+      #error_explanation
+        = render partial: 'partials/error_wrapper', locals: { resource: @band }
 
-  = f.label :name
-  = f.text_field :name
-  = f.label :phone
-  = f.text_field :phone
-  = f.label :image
-  = f.file_field :image
-  = f.label :genres
-  - for genre in Genre.all
-    %div
-      = check_box_tag "band[genre_ids][]", genre.id, @band.genres.include?(genre)
-      = genre.name
-  = f.label :event_types
-  - for type in EventType.all
-    %div
-      = check_box_tag "band[event_type_ids][]", type.id, @band.event_types.include?(type)
-      = type.name
-  = f.label :youtube_links
-  = f.fields_for :youtube_links, include_id: false do |links|
-    = links.text_field :url
-    = links.check_box :_destroy
-  .actions
-    = f.submit
+    .row
+      .col-md-5
+        = f.label :name, "Nombre"
+      .col-md-5
+        = f.text_field :name
+    .row
+      .col-md-5
+        = f.label :phone, "Teléfono"
+      .col-md-5
+        = f.text_field :phone
+    .row
+      .col-md-5
+        = f.label :image, "Imagen"
+      .col-md-5
+        = f.file_field :image
+    %hr
+    .row
+      .col-md-5
+        = f.label :genres, "Género", class: 'inline'
+      .col-md-5
+        - Genre.all.each do |genre|
+          %div
+            = check_box_tag "band[genre_ids][]", genre.id, @band.genres.include?(genre)
+            = genre.name
+    %hr
+    .row
+      .col-md-5
+        = f.label :event_types, "Tipos de Evento", class: 'inline'
+      .col-md-5
+        - EventType.all.each do |type|
+          %div
+            = check_box_tag "band[event_type_ids][]", type.id, @band.event_types.include?(type)
+            = type.name
+    %hr
+    .row
+      .col-md-5
+        = f.label :youtube_links, "Videos de Youtube"
+      .col-md-5
+        = f.fields_for :youtube_links, include_id: false do |links|
+          = links.text_field :url
+          = links.check_box :_destroy
+    .row
+      .actions.right
+        = f.submit "Crear", class: "btn btn-primary"
+    %hr
