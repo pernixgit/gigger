@@ -1,23 +1,50 @@
-= form_for(@event) do |f|
-  - if @event.errors.any?
-    = render partial: 'partials/error_wrapper', locals: { resource: @event }
+.form-content
+  = form_for(@event) do |f|
+    - if @event.errors.any?
+      = render partial: 'partials/error_wrapper', locals: { resource: @event }
 
-  = f.label :name
-  = f.text_field :name
-  = f.label :image
-  = f.file_field :image
-  = f.label :date
-  = f.date_field :date
-  = f.label :time
-  = f.time_field :time
-  = f.label :description
-  = f.text_area :description
-  = f.label :email
-  = f.text_field :email
-  = f.label :phone
-  = f.text_field :phone
-  = f.label :event_type
-  = f.select :event_type_id, options_from_collection_for_select(EventType.all, "id", "name")
-
-  .actions
-    = f.submit
+    .row
+      .col-md-5
+        = f.label :name, "Nombre"
+      .col-md-5
+        = f.text_field :name
+    .row
+      .col-md-5
+        = f.label :image, "Imagen"
+      .col-md-5
+        = f.file_field :image
+    .row
+      .col-md-5
+        = f.label :date, "Fecha"
+      .col-md-5
+        = f.date_field :date
+    .row
+      .col-md-5
+        = f.label :time, "Hora"
+      .col-md-5
+        = f.time_field :time
+    %hr
+    .row
+      .col-md-5
+        = f.label :description, "Descripción"
+      .col-md-5
+        = f.text_area :description
+    .row
+      .col-md-5
+        = f.label :email
+      .col-md-5
+        = f.text_field :email
+    .row
+      .col-md-5
+        = f.label :phone, "Teléfono"
+      .col-md-5
+        = f.text_field :phone
+    .row
+      .col-md-5
+        = f.label :event_type, "Tipo de evento"
+      .col-md-5
+        = f.select :event_type_id, options_from_collection_for_select(EventType.all, "id", "name")
+    .row
+      .actions.right
+        = f.submit "Crear", class: "btn btn-primary"
+    %hr
