@@ -1,10 +1,12 @@
 .cover
   .board-container
     .col-md-3.band-board
-      = image_tag "band-cover.jpg"
+      - if resource.image.url != default_image_path
+        = image_tag resource.image.url
+      - else
+        = image_tag 'band-cover.jpg'
     .col-md-4.band-info
       .row
-        %h2 #{resource.name} 
-        %p Band genre
-      .row.spacing-top
-        %button.btn.btn-sm Contactar
+        %h2 #{ resource.name } #{ resource.try(:last_name) }
+        - if resource.is_a? Event
+          %p #{ resource.event_type.name }

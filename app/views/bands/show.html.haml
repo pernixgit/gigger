@@ -38,7 +38,8 @@
 
 %nav
   %ul.pager
-    %li
-      = link_to 'Edit', edit_band_path(@band)
+    - if current_user && current_user.email == @band.user.email
+      %li
+        = link_to 'Edit', edit_band_path(@band)
     %li
       = link_to 'Back', bands_path
