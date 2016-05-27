@@ -2,15 +2,16 @@
 
 .row.spacing-top
   .col-md-6.col-md-offset-3.lightgrey
-    %p.bottom_margin
-      %h3 Mis géneros:
-      %ul
-        - @musician.genres.each do |genre|
-          %li #{ genre.name }
+    %h3.bottom_margin
+      Mis géneros:
+    %ul
+      - @musician.genres.each do |genre|
+        %li #{ genre.name }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
     %h3.bottom_margin Videos:
+
     - @musician.youtube_links.each do |link|
       .video_image
         = link_to "#{image_tag get_youtube_thumbnail(link.url)}".html_safe, link.url
@@ -18,6 +19,16 @@
   .col-md-6.col-md-offset-3.lightgrey
     %hr
     %h3 Información de contacto:
+    - @musician.youtube_links.in_groups_of(5).each do |link_group|
+      .spacing-top
+        - link_group.each do |link|
+          - if link
+            .col-sm-2.spacing-top
+              = link_to "#{image_tag get_youtube_thumbnail(link.url)}".html_safe, link.url
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
+    %h3 Contact info:
     %h4.bottom_margin
       Email:
     %p.bottom_margin
@@ -25,6 +36,7 @@
     - if @musician.phone
       %h4.bottom_margin
         Teléfono:
+        Phone:
       %p.bottom_margin
         #{ @musician.phone }
 
@@ -32,7 +44,6 @@
   .col-md-6.col-md-offset-3.lightgrey
     %hr
     .col-md-offset-5
-
 
 %nav
   %ul.pager
