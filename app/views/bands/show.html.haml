@@ -31,6 +31,17 @@
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
+    %h3.bottom_margin Videos:
+    - @band.youtube_links.in_groups_of(5).each do |link_group|
+      .spacing-top
+        - link_group.each do |link|
+          - if link
+            .col-sm-2.spacing-top
+              = link_to "#{image_tag get_youtube_thumbnail(link.url)}".html_safe, link.url
+
+.row
+  .col-md-6.col-md-offset-3.lightgrey
+    %hr
     %h3 Eventos
     %ul
       - for type in @band.event_types
