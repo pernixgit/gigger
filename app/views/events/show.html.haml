@@ -8,45 +8,38 @@
     %h4.bottom_margin
       #{ @event.name }
 
+.row.spacing-top
+  .col-md-6.col-md-offset-3.lightgrey
+    %p.bottom_margin
+      %h3 Tipo de evento
+      %p #{ @event.description }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
-    %h3.bottom_margin
-      Tipo de Evento
-    %p #{ @event.event_type.name }
-
+    %h3 Fecha y hora:
+    %h4.bottom_margin
+      Cuándo?
+    %p.bottom_margin
+      #{ @event.date }
+    %h4.bottom_margin
+      A qué hora?
+    %p.bottom_margin
+      #{ @event.time.strftime("%I:%M %p") }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
-    %h3.bottom_margin
-      Descripcion
-    %p #{ @event.description }
-
-.row
-  .col-md-6.col-md-offset-3.lightgrey
-    %hr
-    %h3.bottom_margin
-      Fecha
-    %p #{ @event.date }
-    %h3.bottom_margin
-      Hora
-    %p #{ @event.time.strftime("%I:%M %p") }
-
-.row
-  .col-md-6.col-md-offset-3.lightgrey
-    %hr
-    %h3.bottom_margin
-      Informacion de contacto
-    %p
-      %strong Email:
+    %h3 Información de contacto:
+    %h4.bottom_margin
+      Email:
+    %p.bottom_margin
       #{ @event.email }
-    %p
-      %strong Telefono:
-      #{ @event.phone }
+    - if @event.phone
+      %h4.bottom_margin
+        Teléfono:
+      %p.bottom_margin
+        #{ @event.phone }
 
 %nav
   %ul.pager
     %li
-      = link_to 'Edit', edit_event_path(@event)
-    %li
-      = link_to 'Back', events_path
+      = link_to 'Atrás', bands_path
