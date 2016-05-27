@@ -51,3 +51,6 @@ group :development do
   gem 'guard-hologram', require: false
 end
 
+group :production do
+  gem 'rails_12factor'
+end
