@@ -1,36 +1,69 @@
-= form_for(@musician) do |f|
-  - if @musician.errors.any?
-    #error_explanation
-      = render partial: 'partials/error_wrapper', locals: { resource: @musician }
+.form-content
+  = form_for @musician, html: {class: 'form-inline'} do |f|
+    - if @musician.errors.any?
+      #error_explanation
+        = render partial: 'partials/error_wrapper', locals: { resource: @musician }
 
-  = f.label :name
-  = f.text_field :name
-  = f.label :last_name
-  = f.text_field :last_name
-  = f.label :identification
-  = f.text_field :identification
-  = f.label :phone
-  = f.text_field :phone
-  = f.label :image
-  = f.file_field :image
-  = f.label :instruments
-
-  - for instrument in Instrument.all
-    %div
-      = check_box_tag "musician[instrument_ids][]", instrument.id, @musician.instruments.include?(instrument)
-  - for genre in Genre.all
-    %div
-      = check_box_tag "musician[genre_ids][]", genre.id, @musician.genres.include?(genre)
-      = genre.name
-  = f.label :event_types
-  - for type in EventType.all
-    %div
-      = check_box_tag "musician[event_type_ids][]", type.id, @musician.event_types.include?(type)
-      = type.name
-
-  = f.label :youtube_links
-  = f.fields_for :youtube_links, include_id: false do |links|
-    = links.text_field :url
-    = links.check_box :_destroy
-  .actions
-    = f.submit
+    .row
+      .col-md-5
+        = f.label :name, "Nombre"
+      .col-md-5
+        = f.text_field :name
+    .row
+      .col-md-5
+        = f.label :last_name, "Apellido"
+      .col-md-5
+        = f.text_field :last_name
+    .row
+      .col-md-5
+        = f.label :identification, "Identificación"
+      .col-md-5
+        = f.text_field :identification
+    .row
+      .col-md-5
+        = f.label :phone, "Teléfono"
+      .col-md-5
+        = f.text_field :phone
+    .row
+      .col-md-5
+        = f.label :image, "Imagen"
+      .col-md-5
+        = f.file_field :image
+    %hr
+    .row
+      .col-md-5
+        = f.label :instruments, "Instrumentos", class: 'inline'
+      .col-md-5
+        - Instrument.all.each do |instrument|
+          %div
+            = check_box_tag "musician[instrument_ids][]", instrument.id, @musician.instruments.include?(instrument)
+    %hr
+    .row
+      .col-md-5
+        = f.label :Genre, "Géneros", class: 'inline'
+      .col-md-5
+        - Genre.all.each do |genre|
+          %div
+            = check_box_tag "musician[genre_ids][]", genre.id, @musician.genres.include?(genre), class: 'checkbox-inline'
+            = genre.name
+    %hr
+    .row
+      .col-md-5
+        = f.label :event_types, "Tipos de evento"
+      .col-md-5
+        - EventType.all.each do |type|
+          %div
+            = check_box_tag "musician[event_type_ids][]", type.id, @musician.event_types.include?(type)
+            = type.name
+    %hr
+    .row
+      .col-md-5
+        = f.label :youtube_links, "Videos de Youtube"
+      .col-md-5
+        = f.fields_for :youtube_links, include_id: false do |links|
+          = links.text_field :url
+          = links.check_box :_destroy
+    .row
+      .actions.right
+        = f.submit "Crear", class: "btn btn-primary"
+    %hr

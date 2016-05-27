@@ -1,42 +1,54 @@
 = render partial: 'partials/cover_board', locals: { resource: @band }
+/ %p#notice= notice
+
+.row.spacing-top
+  .col-md-6.col-md-offset-3.lightgrey
+    %h3.bottom_margin
+      Nombre
+    %h4.bottom_margin
+      #{ @band.name }
 
 .row.spacing-top
   .col-md-6.col-md-offset-3.lightgrey
     %p.bottom_margin
-      %h3 What we play:
+      %h3 Nuestros géneros:
       %ul
         - @band.genres.each do |genre|
           %li #{ genre.name }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
-    %h3.bottom_margin Videos:
-    - @band.youtube_links.each do |link|
-      .video_image
-        = link_to "#{image_tag get_youtube_thumbnail(link.url)}".html_safe, link.url
-.row
-  .col-md-6.col-md-offset-3.lightgrey
-    %hr
-    %h3 Contact info:
+    %h3 Información de contacto:
     %h4.bottom_margin
       Email:
     %p.bottom_margin
       #{ @band.user.email }
     - if @band.phone
       %h4.bottom_margin
-        Phone:
+        Teléfono:
       %p.bottom_margin
         #{ @band.phone }
+
+    %h3.bottom_margin Videos:
+    - @band.youtube_links.in_groups_of(5).each do |link_group|
+      .spacing-top
+        - link_group.each do |link|
+          - if link
+            .col-sm-2.spacing-top
+              = link_to "#{image_tag get_youtube_thumbnail(link.url)}".html_safe, link.url
 
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
-    .col-md-offset-5
+    %h3 Eventos
+    %ul
+      - for type in @band.event_types
+        %li #{ type.name }
 
 %nav
   %ul.pager
     - if current_user && current_user.email == @band.user.email
       %li
-        = link_to 'Edit', edit_band_path(@band)
+        = link_to 'Editar', edit_band_path(@band)
     %li
-      = link_to 'Go back', bands_path
+      = link_to 'Atrás', bands_path

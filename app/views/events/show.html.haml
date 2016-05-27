@@ -1,45 +1,45 @@
 = render partial: 'partials/cover_board', locals: { resource: @event }
+/ %p#notice= notice
+
+.row.spacing-top
+  .col-md-6.col-md-offset-3.lightgrey
+    %h3.bottom_margin
+      Nombre
+    %h4.bottom_margin
+      #{ @event.name }
 
 .row.spacing-top
   .col-md-6.col-md-offset-3.lightgrey
     %p.bottom_margin
-      %h3 Description:
+      %h3 Tipo de evento
       %p #{ @event.description }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
-    %h3 Date & time:
+    %h3 Fecha y hora:
     %h4.bottom_margin
-      When?
+      Cuándo?
     %p.bottom_margin
       #{ @event.date }
     %h4.bottom_margin
-      What time?
+      A qué hora?
     %p.bottom_margin
       #{ @event.time.strftime("%I:%M %p") }
 .row
   .col-md-6.col-md-offset-3.lightgrey
     %hr
-    %h3 Contact info:
+    %h3 Información de contacto:
     %h4.bottom_margin
       Email:
     %p.bottom_margin
       #{ @event.email }
     - if @event.phone
       %h4.bottom_margin
-        Phone:
+        Teléfono:
       %p.bottom_margin
         #{ @event.phone }
 
-.row
-  .col-md-6.col-md-offset-3.lightgrey
-    %hr
-    .col-md-offset-5
-
 %nav
   %ul.pager
-    - if current_user && current_user.email == @event.user.email
-      %li
-        = link_to 'Edit', edit_band_path(@event)
     %li
-      = link_to 'Go back', bands_path
+      = link_to 'Atrás', bands_path

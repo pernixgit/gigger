@@ -35,6 +35,10 @@ footer {
   text-align: center;
 }
 
+.right {
+  float: right;
+}
+
 .inline {
   display: inline-block !important;
 }
@@ -187,4 +191,9 @@ footer {
   h3 {
     margin-top: 10px;
   }
+}
+
+.form-content {
+  width: 40%;
+  margin: 0 auto;
 }

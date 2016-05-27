@@ -1,17 +1,34 @@
-= form_for(@client) do |f|
-  - if @client.errors.any?
-    = render partial: 'partials/error_wrapper', locals: { resource: @client }
+.form-content
+  = form_for @client, html: {class: 'form-inline'} do |f|
+    - if @client.errors.any?
+      = render partial: 'partials/error_wrapper', locals: { resource: @client }
 
-  = f.label :name
-  = f.text_field :name
-  = f.label :last_name
-  = f.text_field :last_name
-  = f.label :identification
-  = f.text_field :identification
-  = f.label :phone
-  = f.text_field :phone
-  = f.label :image
-  = f.file_field :image
-
-  .actions
-    = f.submit
+    .row
+      .col-md-5
+        = f.label :name, "Nombre"
+      .col-md-5
+        = f.text_field :name
+    .row
+      .col-md-5
+        = f.label :last_name, "Apellido"
+      .col-md-5
+        = f.text_field :last_name
+    .row
+      .col-md-5
+        = f.label :identification, "Identificación"
+      .col-md-5
+        = f.text_field :identification
+    .row
+      .col-md-5
+        = f.label :phone, "Teléfono"
+      .col-md-5
+        = f.text_field :phone
+    .row
+      .col-md-5
+        = f.label :image, "Imagen"
+      .col-md-5
+        = f.file_field :image
+    .row
+      .actions.right
+        = f.submit "Crear", class: "btn btn-primary"
+    %hr
