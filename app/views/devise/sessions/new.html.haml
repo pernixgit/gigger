@@ -3,7 +3,7 @@
     .col-md-12
       .circle-container
       .title= image_tag 'logo.png'
-      .login-box
+      .login-box.small-box
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           = devise_error_messages!
           .row.field
@@ -25,9 +25,7 @@
               = f.label :remember_me
           .actions
             = f.submit 'Login in', class: 'btn btn-primary'
-
-  .row
-    .col-md-12
-      = render 'devise/shared/links'
-
-
+        %nav.nav-login
+          %ul.pager
+            %li
+              = render 'devise/shared/links'
